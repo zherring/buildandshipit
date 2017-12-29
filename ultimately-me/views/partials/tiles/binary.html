@@ -1,0 +1,15 @@
+<div class="tile-content" ng-class="{'popup': $index > 3}">
+    <div class="tile-cue" as-sortable-item-handle ng-init="tile.locked=true" hm-press="preferences.editing = !preferences.editing">
+        <div class="name" ng-bind-html="tile.name | emojify"></div>
+        <div class="result" ng-if="answers[tile.tid].a && tile.locked" ng-click="tile.locked = false">
+            <div ng-bind-html="answers[tile.tid].a | emojify"></div>
+        </div>
+        <div class="answers flex-row" ng-if="!answers[tile.tid].a || !tile.locked">
+            <div class="answer answer-a" ng-click="doRecordData($event, tile, 1);tile.locked=true;ripple($event, '.tile-cue')" ng-bind-html="tile.labels[1] | emojify"></div>
+            <div class="answer answer-b" ng-click="doRecordData($event, tile, -1);tile.locked=true;ripple($event, '.tile-cue')" ng-bind-html="tile.labels[-1] | emojify"></div>
+        </div>
+        <div class="when when-since" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+        <div class="when when-fixed" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+    </div>
+    <div class="tile-tools" ng-include="'views/partials/tiles/general-tools.html'"></div>
+</div>

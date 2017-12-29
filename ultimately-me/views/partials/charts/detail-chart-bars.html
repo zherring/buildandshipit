@@ -1,0 +1,21 @@
+<div class="data-block" xline-label="{{tileInFocus._axis == 'down' ? tileInFocus._quota : ''}}">
+
+    <div ng-repeat="day in reportDayRange.month" class="data" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+        <div class="data-void flex-{{tileInFocus._quota - tileReport.data[day].length + tileReport.data.over}}"></div>
+        <div class="data-fill flex-{{tileReport.data[day].length}}" label="{{tileReport.data[day].length}}"></div>
+    </div>
+
+    <!-- <div class="liner fg-color{{tileInFocus.color}}" line-label="{{(tileInFocus._quota/2).toFixed(0)}}" style="top: {{100-((((tileInFocus._quota/2).toFixed(0))/tileInFocus._quota)*100).toFixed(0)}}%" ng-if="tileInFocus._quota > 4"></div> -->
+
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileInFocus._quota}}" style="bottom: 100%" ng-if="tileInFocus._axis == 'down'"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: {{(100 - tileReport.data.max)}}%" ng-if="tileInFocus._axis == 'down'"></div>
+
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileInFocus._quota}}" style="bottom: {{(100 - tileReport.data.max)}}%" ng-if="tileInFocus._axis == 'up'"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: 100%" ng-if="tileInFocus._axis == 'up'"></div>
+
+</div>
+
+<div class="data-days chart-text">
+    <div class="data-day day-0"><span>{{tileReport.day[0].name}}</span></div>
+    <div class="data-day day-{{_.last(reportDayRange.month)}}"><span>{{reportDayRange.month.length}} days ago</span></div>
+</div>

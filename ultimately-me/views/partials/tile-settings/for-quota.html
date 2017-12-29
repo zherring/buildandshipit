@@ -1,0 +1,24 @@
+<div class="tile-info form-row" ng-if="mode == 'add'">
+    <div class="helptext">{{tileTypes[tile.type].description}}</div>
+</div>
+
+<div class="form-row">
+    <div class="form-row-label">{{tileTypes[tile.type].nickname}} Options</div>
+    <div class="form-row">
+        <div class="flex-row fancy-radio-row align-items-center">
+            <label>
+                <input type="radio" value="up" ng-model="tile.axis" />
+                <span>up to</span>
+            </label>
+            <label>
+                <input type="radio" value="down" ng-model="tile.axis" />
+                <span>down from</span>
+            </label>
+        </div>
+    </div>
+    <div class="form-row flex-row align-items-center">
+        <span class="pad-right-1">1</span>
+        <input type="range" ng-model="tile.quota" min="1" max="{{qmax}}" step="1" />
+        <span class="pad-left-1">{{qmax}}</span>
+    </div>
+</div>

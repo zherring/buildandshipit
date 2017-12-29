@@ -1,0 +1,18 @@
+<div class="tile-info form-row" ng-if="mode == 'add'">
+    <span class="helptext">{{tileTypes[tile.type].description}}</span>
+</div>
+
+<div class="form-row">
+    <div class="form-row-label">
+        Slider Scales
+        <div class="smalltext" ng-if="mode != 'add'"><i class="fa fa-lock"></i> Cannot change existing scale</div>
+    </div>
+    <div class="form-row">
+        <div class="flex-row fancy-radio-row align-items-center">
+            <label ng-repeat="(id, item) in scaleTypes" ng-disabled="mode != 'add'">
+                <input type="radio" value="{{id}}" ng-model="tile.scale" ng-disabled="mode == 'edit'" />
+                <span>{{item.name}}</span>
+            </label>
+        </div>
+    </div>
+</div>

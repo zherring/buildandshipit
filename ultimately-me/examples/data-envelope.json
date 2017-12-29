@@ -1,0 +1,53 @@
+"tile-set-1AB2I1YDH3O3_2IEB21UYBED2":
+{
+"key":"1AB2I1YDH3O3_2IEB21UYBED2",
+"preferences":{
+                "colorSet":"Best Coast Blue"
+              },
+"settings":{
+            "name":"Awesome Set",
+            "security": ["stuff","more stuff"]
+           },
+"tiles":[
+            {
+            "tid":1423709136481,
+            "name":"Coffee",
+            "type":1,
+            "interval":2,
+            "showTime":"since",
+            "color":8
+            },
+            {
+            "tid":1423709136482,
+            "name":"Water",
+            "type":2,
+            "interval":2,
+            "showTime":"since",
+            "color":5,
+            "quota":10,
+            "axis":"up"
+            }
+        ],
+"data":{
+            "tile-data-1423709136481":[
+                                        {"d":1423710529681},
+                                        {"d":1423710530944},
+                                        {"d":1423710532159},
+                                        {"d":1423710533246},
+                                        {"d":1424138523258},
+                                        {"d":1424138551190},
+                                        {"d":1424138552839}
+                                       ],
+            "tile-data-1423709136482":[
+                                        {"d":1423710529164},
+                                        {"d":1423710531604},
+                                        {"d":1423710532705},
+                                        {"d":1423710533929},
+                                        {"d":1424138522620},
+                                        {"d":1424138552022}
+                                       ]
+            },
+"archives":[
+
+        ]
+}

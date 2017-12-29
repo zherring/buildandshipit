@@ -1,0 +1,12 @@
+<div class="tile-content" ng-class="{'popup': $index > 3}">
+
+    <div class="tile-cue" as-sortable-item-handle hm-press="preferences.editing = !preferences.editing">
+        <div class="name" ng-bind-html="tile.name | emojify"></div>
+        <div class="result" ng-click="doRecordData($event, tile);ripple($event, '.tile-cue')">{{answers[tile.tid].a}}</div>
+        <div class="when when-since" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+        <div class="when when-fixed" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+    </div>
+
+    <div class="tile-tools" ng-include="'views/partials/tiles/general-tools.html'"></div>
+
+</div>

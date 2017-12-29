@@ -1,0 +1,11 @@
+<div class="tile-content">
+    <div class="tile-cue {{tileTypes[tile.type].name}} {{tileTypes[tile.type].name}}-{{tile.scale}}">
+        <div class="name" ng-bind-html="tile.name | emojify"></div>
+
+        <div class="chart {{chartTypes[tile._chart].name}}">
+            <div class="chart-inner"
+                ng-include="'views/partials/charts/chart-' + chartTypes[tile._chart].name + '.html'"
+                ></div>
+        </div>
+    </div>
+</div>

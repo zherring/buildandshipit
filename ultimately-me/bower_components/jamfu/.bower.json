@@ -1,0 +1,47 @@
+{
+  "name": "jamfu",
+  "homepage": "http://jasesmith.github.io/jamfu/",
+  "authors": [
+    "Jase <jase@star29.com>"
+  ],
+  "description": "Some handy AngularJS and UnderscoreJS utilities and other useful things.",
+  "main": "jamfu.js",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.x",
+    "angular": "~1.x",
+    "moment": "~2.x",
+    "font-awesome": "~4.x",
+    "underscore": "~1.x",
+    "jquery.scrollTo": "~2.x",
+    "angular-sanitize": "~1.x.x",
+    "angular-touch": "~1.x.x",
+    "angular-animate": "~1.x.x",
+    "angular-ui-router": "~0.2.x",
+    "angular-ui-sortable": "~0.13.x",
+    "hammerjs": "~2.0.x",
+    "ryanmullins-angular-hammer": "~2.1.x"
+  },
+  "resolutions": {
+    "angular": "1.4.0"
+  },
+  "_release": "f258634346",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f2586343464f98da3104d9475f437aeea1d3fae4"
+  },
+  "_source": "https://github.com/jasesmith/jamfu.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/jasesmith/jamfu.git"
+}

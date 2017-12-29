@@ -1,0 +1,329 @@
+$chart-baseline: 1px solid rgba(#FFF, .65);
+.view-report {
+    .chart-area {
+        flex: 1;
+        position: relative;
+        padding: .5em 1em;
+    }
+    .chart {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        position: relative;
+        padding: .5em .5em .5em .8em;
+        .chart-inner {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            position: relative;
+            &[line-label]:after {
+                top: 0;
+            }
+        }
+        .data-block {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: row-reverse;
+            // border-bottom: $chart-baseline;
+        }
+        .data-days {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            text-align: center;
+            padding: .2rem 0 0 0;
+        }
+        .data-day {
+            flex: 1 0 auto;
+            text-align: center;
+            position: relative;
+            span {
+                display: block;
+            }
+            &:first-of-type {
+                text-align: right;
+            }
+            &:last-of-type {
+                text-align: left;
+            }
+        }
+    }
+    .chart-text {
+        font-size: 2.5vmax;
+        opacity: .8;
+    }
+    .data {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-end;
+        flex: 1 0 auto;
+        position: relative;
+        padding: 0 1px;
+        &:first-of-type {
+            padding-right: 0;
+        }
+        &:last-of-type {
+            padding-left: 0;
+        }
+        [class*="data-"] {
+            background: currentColor;
+        }
+        .data-point {
+            border-radius: .1em;
+        }
+    }
+    .units {
+        .data {
+            padding: 0;
+            margin: 0 1px;
+            border-radius: .1em;
+            background: currentColor;
+        }
+        .data-point {
+            transform: scale(1, .95);
+            transform-origin: 50% 100%;
+            flex: 0 0 .25em;
+        }
+    }
+    .line {
+        .data {
+            .data-point {
+                border-radius: .1em;
+                &.average {
+                    position: absolute;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: .6em;
+                    height: .2em;
+                    border-radius: 1em;
+                    flex: none;
+                    margin: 0;
+                    z-index: 1;
+                    .stroke {
+                        position: absolute;
+                        top: 50%;
+                        left: 100%;
+                        width: 0.8em;
+                        height: 2px;
+                        background: currentColor;
+                        transform: translate(0%, -50%);
+                    }
+                }
+            }
+            .data-span {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                width: .2em;
+                border-radius: 1em;
+            }
+        }
+    }
+    .stacked {
+        .data {
+            justify-content: flex-start;
+        }
+        .data-block {
+            border: 0;
+            font-size: .7em;
+        }
+        .ab-key {
+            margin-bottom: 1em;
+            // .a, .b {
+            //     position: relative;
+            //     &:after {
+            //         content: attr(key);
+            //         position: absolute;
+            //         text-transform: uppercase;
+            //         bottom: 100%;
+            //         left: 50%;
+            //         width: 1em;
+            //         height: 1em;
+            //         transform: translateX(-50%) scale(.7);
+            //         border-radius: 1em;
+            //     }
+            // }
+        }
+        .ab-bar {
+            > * {
+                background: currentColor;
+                height: 1em;
+                min-width: .5em;
+                opacity: .4;
+            }
+            .a {
+                margin-right: 1px;
+                border-radius: .2em 0 0 .2em;
+            }
+            .b {
+                margin-left: 1px;
+                border-radius: 0 .2em .2em 0;
+            }
+            .winner {
+                opacity: .9;
+            }
+        }
+        .ab-bar-null {
+            .a, .b {
+                opacity: .3;
+            }
+        }
+    }
+    [line-label] {
+        &:after {
+            content: attr(line-label);
+            color: #FFF;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            text-align: right;
+            transform: translate(-125%, -50%);
+            border-radius: 1em;
+            width: 1.5em;
+            height: 1.2em;
+            line-height: 1;
+            padding: 0;
+            opacity: .5;
+            font-size: 3.5vmin;
+        }
+        &.data-block:after {
+            top: 0%;
+        }
+    }
+    .liner {
+        position: absolute;
+        right: 0;
+        left: 0;
+        height: 0;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        transform: translateY(-50%);
+        box-shadow: 0 0 0 1px currentColor;
+        &.no-line {
+            border-color: transparent;
+        }
+    }
+    .data-fill {
+        border-radius: .1em .1em 0 0;
+    }
+    .data-void,
+    .data-span {
+        border-radius: .1em;
+    }
+
+    .quota {
+        &.quota-down {
+            .chart {
+                flex-direction: column-reverse;
+            }
+            .data {
+                justify-content: flex-start;
+                flex-direction: column-reverse;
+            }
+            .data-fill {
+                border-radius: 0 0 .1em .1em;
+            }
+            .data-void {
+                // border-radius: .1em .1em 0 0;
+            }
+            .data-block {
+                border-top: $chart-baseline;
+                border-bottom: 0;
+            }
+        }
+        &.quota-up {
+            .units .data {
+                flex-direction: column-reverse;
+            }
+            .data {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+
+.view-report-details {
+    .view-report {
+        .chart {
+            padding: 1em .75em .5em 1em;
+        }
+        .units {
+            // justify-content: center;
+            .chart-inner {
+                // flex: 0 0 auto;
+            }
+            .data {
+                padding: 0 1px;
+                margin: 0;
+                border-radius: 0;
+                background: none;
+            }
+            .data-point {
+                flex: 1;
+            }
+        }
+        .stacked {
+            .data-block {
+                flex-direction: row;
+                border: 0;
+                font-size: .7em;
+            }
+            .data-group {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+            .data {
+                flex-direction: row-reverse;
+                justify-content: flex-start;
+                flex: 1;
+            }
+            .ab-key {
+                margin-bottom: 0;
+                > div {
+                    display: flex;
+                    align-items: center;
+                    div {
+                        position: relative;
+                        transform: rotate(-90deg);
+                        display: inline-block;
+                    }
+                }
+                .fa {
+                    transform: rotate(90deg);
+                    font-size: 1.5em;
+                    margin: -1em -.3em;
+                    padding: 0 .6em 0 0;
+                }
+            }
+            .ab-bar {
+                flex: 1;
+                > * {
+                    height: auto;
+                    background: none;
+                }
+                .a, .b {
+                    background: currentColor;
+                    opacity: .4;
+                }
+                .a {
+                    border-radius: .2em .2em 0 0;
+                }
+                .b {
+                    border-radius: 0 0 .2em .2em;
+                }
+            }
+            .winner {
+                .a, .b {
+                    opacity: .9;
+                }
+            }
+        }
+    }
+}

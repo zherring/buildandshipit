@@ -1,0 +1,714 @@
+// Background & Bases
+$base: #3399CC;
+$base-dark: #323232;
+$base-light: #FFF;
+$base-mix: mix($base-dark, $base-light, 80%);
+$base-mix-dark: mix($base-mix, $base-dark);
+
+$dark-text-default: $base-dark;
+$light-text-default: $base-light;
+
+// states
+$alert: #fc1770;
+$warning: #ff7f36;
+$success: #94ca3d;
+$cancel: darken($base, 10%);
+$active: #15c5ec;
+
+// Tile Colors
+
+// Alt. Color Set (Neon Blues and Purple)
+// $color1: #FF3652;
+// $color2: #FF962C;
+// $color3: #FFD51E;
+// $color4: #1DD9FF;
+// $color5: #3899FF;
+// $color6: #6A5DFF;
+// $color7: #FF6BFF;
+// $color8: #e84778;
+// $color9: #4A4A4A;
+
+// Primary Color Set
+$color1: #39C3FF; //#3EC3FF
+$color2: #90CA77; //#1BE8B5;
+$color3: #FFBC00;
+$color4: #FA8620; //#FF7728;
+$color5: #F74050; //#F75040;
+$color6: #E67BF0; //#F36BF0;
+$color7: #746AC9; //#6B63FF;
+$color8: #9C7655;
+$color9: #4d4d4d;
+
+// list of colors for looping
+$colors: $color1 $color2 $color3 $color4 $color5 $color6 $color7 $color8 $color9;
+
+@mixin tile-shadow() {
+    box-shadow: 0 .1em .1em 0 rgba(#FFF, .15) inset, 0 -.15em 0 0 rgba(#000, .2) inset, 0 .1em .3em 0 rgba(#000, .3);
+}
+
+// from _base
+.bg-air {background: transparent;}
+.bg-color {background: $base-dark;color: set-text-color($base-dark);}
+.bg-color1 {background: $color1;color: set-text-color($color1);}
+.bg-color2 {background: $color2;color: set-text-color($color2);}
+.bg-color3 {background: $color3;color: set-text-color($color3);}
+.bg-color4 {background: $color4;color: set-text-color($color4);}
+.bg-color5 {background: $color5;color: set-text-color($color5);}
+.bg-color6 {background: $color6;color: set-text-color($color6);}
+.bg-color7 {background: $color7;color: set-text-color($color7);}
+.bg-color8 {background: $color8;color: set-text-color($color8);}
+.bg-color9 {background: $color9;color: set-text-color($color9);}
+.bg-light {background: $base-light;color: set-text-color($base-light);}
+.bg-dark {background: $base-dark;color: set-text-color($base-dark);}
+.bg-base {background: $base;color: set-text-color($base);}
+.bg-mix {background: $base-mix; color: set-text-color($base-mix);}
+
+.bg-alert {background: $alert;  color: set-text-color($alert);}
+.bg-warning {background: $warning;  color: set-text-color($warning);}
+.bg-success {background: $success;  color: set-text-color($success);}
+.bg-cancel {background: $cancel;  color: set-text-color($cancel);}
+.bg-active {background: $active;  color: set-text-color($active);}
+
+.fg-air {color: transparent;}
+.fg-color {color: $base-dark;}
+.fg-color1 {color: $color1;}
+.fg-color2 {color: $color2;}
+.fg-color3 {color: $color3;}
+.fg-color4 {color: $color4;}
+.fg-color5 {color: $color5;}
+.fg-color6 {color: $color6;}
+.fg-color7 {color: $color7;}
+.fg-color8 {color: $color8;}
+.fg-color9 {color: $color9;}
+.fg-light {color: $base-light;}
+.fg-dark {color: $base-dark;}
+.fg-base {color: $base;}
+.fg-mix {color: $base-mix;}
+
+.fg-alert {color: $alert;}
+.fg-warning {color: $warning;}
+.fg-success {color: $success;}
+.fg-cancel {color: $cancel;}
+.fg-active {color: $active;}
+
+.glow-alert {text-shadow: 0 0 .6em $alert;}
+.glow-warning {text-shadow: 0 0 .6em $warning;}
+.glow-success {text-shadow: 0 0 .6em $success;}
+.glow-cancel {text-shadow: 0 0 .6em $cancel;}
+.glow-active {text-shadow: 0 0 .6em $active;}
+
+.shadow-alert {box-shadow: 0 0 .6em 0 $alert;}
+.shadow-warning {box-shadow: 0 0 .6em 0 $warning;}
+.shadow-success {box-shadow: 0 0 .6em 0 $success;}
+.shadow-cancel {box-shadow: 0 0 .6em 0 $cancel;}
+.shadow-active {box-shadow: 0 0 .6em 0 $active;}
+
+.subtext {color: $base-mix;}
+
+
+.body {
+    fill: #D1D1D1;
+    -webkit-filter: drop-shadow( -5px -5px 5px #000 );
+    filter: drop-shadow( -5px -5px 5px #000 );
+}
+// _layout extracts
+html,
+body {
+    background: $base-dark;
+    color: $base-light;
+}
+
+main {
+    color: $base-light;
+    background: $base-dark;
+    .top-nav:not([class*="bg-color"]) {
+        background: rgba($base-dark, .85);
+    }
+    &.view-report,
+    &.view-report-details {
+        background: $base-light;
+        color: $base-dark;
+    }
+    &.view-report {
+        > .top-nav {
+            background: rgba($base-light, .85);
+        }
+    }
+    &.view-tutorial {
+        .scroller {
+            background: $base-dark;
+        }
+    }
+}
+
+.svg-um-logo {
+    @include tile-shadow();
+    border-radius: .5em;
+    background: mix($base-dark, $base-mix);
+    .background,
+    .foreground {
+        fill: transparent; //mix($base-dark, $base-mix);
+    }
+}
+
+// magic loop over theme colors
+@for $i from 1 through length($colors) {
+    $c: nth($colors, $i);
+    .fg-color#{$i},
+    .bg-color#{$i} {
+        .svg-um-logo .mark {
+            fill: $c;
+        }
+    }
+}
+
+.icon-um-logo {
+    path {
+        fill: $active;
+        &.icon-bg {
+            fill: $base-mix;
+        }
+    }
+}
+.tutorial-nav {
+    background-image:linear-gradient(to bottom, rgba($base-dark, 0) 0%, rgba($base-dark, 1) 50%);
+    .current {
+        color: $active;
+    }
+}
+.tap-here {
+    svg path {
+        stroke: $active;
+    }
+}
+.tutorial {
+    input:not([type="checkbox"]):not([type="radio"]), textarea, select:not(.inline) {
+        background: #FFF;
+        color: $base-dark;
+        &::-webkit-input-placeholder {
+            color: $base-mix;
+        }
+        &[disabled] {
+            color: rgba($base-dark, .3);
+        }
+        &.ng-invalid {
+            color: $alert;
+            animation: pulse 2s both linear infinite;
+        }
+    }
+}
+
+.main-menu {
+    color: $base-dark;
+    background: $base-light;
+    box-shadow: 0 .3em .3em .1em rgba(#000, .3);
+    .current {
+        color: $active;
+    }
+}
+.menu-shield {
+    // background: rgba($base-dark, .85);
+}
+
+
+
+#add-tile {
+    background: $base-light;
+    color: lighten($base-mix, 20%);
+    @include tile-shadow();
+}
+
+.set-nav {
+    span {
+        color: #FFF;
+        &.current {
+            color: $base-light;
+        }
+    }
+}
+
+// inputs
+input, button, .button, textarea, select {
+    background: rgba($base-light, .2);
+    color: $base-light;
+    &::-webkit-input-placeholder {
+        color: $base-dark;
+    }
+    &[disabled] {
+        opacity: 1;
+        color: rgba($base-light, .3);
+    }
+}
+
+.select-me {
+    color: $active;
+}
+
+input {
+    &[type=radio],
+    &[type=checkbox] {
+        &:checked {
+            color: $active;
+        }
+        &[disabled] {
+            color: rgba($base-light, .3);
+        }
+    }
+    &[type="range"] {
+        background: fade_out($base-light, .5);
+        &::-webkit-slider-thumb {
+            background: $active;
+        }
+        &:focus,
+        &:active {
+            &::-webkit-slider-thumb {
+                background: lighten($active, 5%);
+            }
+        }
+    }
+    &[type="checkbox"].toggle {
+        background: rgba(mix($base-light, $base-dark, 50%), .4);
+        box-shadow: 0 0 0 .06em rgba(set-text-color($base-light), .5) inset;
+        &:before {
+            background: $base-light;
+            box-shadow: 0 0 0 .1em rgba($base-dark, .6);
+        }
+        &:checked {
+            background: lighten($active, 5%);
+            &:before {
+                transform: translate(75%, -50%) scale(.7, .7);
+            }
+        }
+    }
+}
+
+.fancy-radio-row input[type=radio] {
+    + span {
+        background-color: lighten($base-mix, 3%);
+        box-shadow: 0 0 1px 0 $base-light inset;
+    }
+    &:checked {
+        + span {
+            background: $active;
+            color: set-text-color($active);
+        }
+    }
+}
+
+button,
+.button {
+    // @include tile-shadow();
+    box-shadow: 0 0 1px 0 $base-light inset;
+    &.save {background: $active;}
+    &.cancel { background: $cancel; }
+    &.success { background: $success; }
+    &.alert { background: $alert; color: set-text-color($alert); }
+    &.caution { background: $warning; color: set-text-color($warning); }
+    &:active {
+        box-shadow: none;
+        margin-top: .1em;
+        margin-bottom: -.1em;
+    }
+}
+
+.control-bar {
+    button {
+        background: none;
+        box-shadow: none;
+        &:not(.active) {
+            color: rgba($base-light, .35);
+        }
+        &.active {
+            color: $active;
+        }
+    }
+}
+
+.kit button,
+.kit .button {
+    // @include tile-shadow();
+}
+
+// Tile Things
+// TILE EDITOR
+.editor {
+    color: mix(set-text-color($base-mix), $base-mix, 65%);
+    font-weight: 300;
+    [class*="step--"] {
+        background: mix($base-mix, $base-dark);
+        box-shadow: 0 0 0 1px rgba(#000, .3);
+        border-top: 1px solid rgba(#fff, .1);
+    }
+    .subtext {color: mix($base-mix, $base-light);}
+    .errors {
+        background: rgba($alert, .1);
+        box-shadow: 0 1px 0 0 $base-mix;
+        border-bottom: 1px solid $base-dark;
+    }
+    input:not([type="checkbox"]):not([type="radio"]), textarea, select:not(.inline) {
+        background: #FFF;
+        color: $base-dark;
+        &::-webkit-input-placeholder {
+            color: $base-mix;
+        }
+        &[disabled] {
+            color: rgba($base-dark, .3);
+        }
+        &.ng-invalid {
+            color: $alert;
+            animation: pulse 2s both linear infinite;
+        }
+    }
+
+    input {
+        &[type=radio],
+        &[type=checkbox] {
+            background: transparent;
+            &:checked {
+                color: $active;
+            }
+            &[disabled] {
+                color: rgba($base-light, .3);
+            }
+        }
+        &[type="range"] {
+            background: fade_out($base-mix, .5);
+            &::-webkit-slider-thumb {
+                background: $active;
+            }
+            &:focus,
+            &:active {
+                &::-webkit-slider-thumb {
+                    background: lighten($active, 5%);
+                }
+            }
+        }
+    }
+
+    .toggle-area {
+        box-shadow: 0 -1px 0 0 $base-mix inset;
+    }
+    .type-wrapper {
+        background: mix($base-mix, $base-dark, 70%);
+        @include background-gradient(mix($base-mix, $base-dark, 70%), mix($base-mix, $base-dark))
+    }
+}
+
+.toggle-bar {
+    .item {
+        background-color: lighten($base-mix, 3%);
+        // @include tile-shadow();
+        box-shadow: 0 0 1px 0 $base-light inset;
+        &[disabled]:not(.active) {
+            opacity: .5;
+            box-shadow: none;
+        }
+    }
+    .active {
+        background: $active;
+        color: set-text-color($active);
+        &:before {
+            border-bottom-color: $base-mix;
+        }
+        &:after {
+            border-bottom-color: mix($base-mix, $base-dark, 70%);
+        }
+    }
+}
+
+// TILE EDITING
+.editing {
+    .tile {
+        &.rewinding {
+            .tile-cue {
+                box-shadow: 0 0 1em 0 $base-dark;
+            }
+            .rewind {
+                background: rgba($base-mix, .85);
+                box-shadow: 0 0 2em 0 $base-dark;
+                &:after {
+                    border-bottom-color: rgba($base-mix, .85);
+                }
+                .subtext {
+                    color: $base-light;
+                }
+            }
+            .popup .rewind:after {
+                border-top-color: rgba($base-mix, .85);
+            }
+        }
+    }
+}
+
+// TILES
+.tile {
+    color: $base-light;
+    .result {
+        opacity: .9;
+    }
+    .tile-cue {
+        background: mix($base-dark, $base-mix, 80%);
+        @include tile-shadow();
+    }
+    .progress {
+        div {
+            background: mix($base-dark, $base-light, 80%);
+        }
+        &.done:after {
+            color: $base-light; background: $base;
+        }
+    }
+    .edit {
+        color: $base-light;
+        text-shadow: 0 .1em 0 rgba(#000, .15), 0 .05em .15em rgba(#000, .15);
+        .save-rewind {
+            border-radius: .2em;
+            color: $base-light;
+            &:after {
+                background: $base-dark;
+            }
+        }
+    }
+
+    .answers .answer {
+        + .answer {
+            border-color: rgba($base-light, .85);
+        }
+    }
+
+    // magic loop over theme colors
+    @for $i from 1 through length($colors) {
+        $c: nth($colors, $i);
+        &.tile-color#{$i} {
+            .tile-cue {
+                background: $c;
+                .result {
+                    text-shadow: 0 .05em .08em mix($base-dark, $c, 30%);
+                }
+            }
+
+            input[type="range"] {
+                background: fade_out(set-text-color($c), .5);
+                &::-webkit-slider-thumb {
+                    background: mix(#FFF, $c, 85%);
+                }
+            }
+
+            .progress {
+                div {
+                    background: $c;
+                    @include tile-shadow();
+                }
+                &.done:after {
+                    background: lighten($c, 10%);
+                }
+            }
+
+            &.rewinding {
+                .rewind {
+                    color: $base-dark;
+                    background: rgba(mix($base-light, $c, 65%), .85);
+                    input {
+                        color: $base-dark;
+                        &[type="range"]::-webkit-slider-thumb {
+                            background: currentColor;
+                        }
+                    }
+                    &:after {
+                        border-bottom-color: rgba(mix($base-light, $c, 65%), .85);
+                    }
+                    .subtext {
+                        color: $base-dark;
+                    }
+                }
+                .popup .rewind:after {
+                    border-top-color: rgba(mix($base-light, $c, 65%), .85);
+                }
+            }
+            &.quota {
+                .tile-cue {
+                    // background: mix($c, #000, 83%);
+                    .progress {
+                        background: mix($c, #000, 83%);
+                        @include tile-shadow();
+                        > div {
+                            // box-shadow: 0 1px 0 0 lighten($c, 7%) inset;
+                            @include tile-shadow();
+                        }
+                    }
+                }
+            }
+
+            // charts
+            .line .data .data-point {
+                &.average:not(.null) {
+                    box-shadow: 0 0 0 1px $c;
+                }
+            }
+        }
+        .color#{$i} {
+            color: $c;
+        }
+        .bg-color-wash#{$i} {
+            background: rgba($c, .2);
+        }
+    }
+}
+
+// REPORTING
+.view-report {
+    .chart {
+        .data {
+            border-color: rgba(#FFF, .2);
+            &:after {
+                background: rgba(#FFF, .2);
+            }
+            .data-point,
+            .data-fill {
+                color: rgba(#FFF, .6);
+
+                &.nope {
+                    color: rgba(#000, .15);
+                }
+                &.overage {
+                    color: rgba(#FFF, .45);
+                }
+            }
+            .data-null {
+                color: transparent;
+            }
+            .data-void {
+                color: rgba(#FFF, .1);
+            }
+            .data-span {
+                color: rgba(#FFF, .3);
+            }
+            &.today {
+                .data-point,
+                .data-fill {
+                    color: rgba(#FFF, .9);
+                }
+            }
+        }
+        // .monthline {
+        //     border-color: rgba($success, .35);
+        // }
+    }
+    .bars {
+        .data {
+        }
+    }
+    .units {
+        .data {
+            color: rgba(#FFF, .1);
+        }
+    }
+    .stacked {
+        .ab-keys {
+        }
+    }
+    .line {
+        .data {
+            .data-point {
+                color: transparent;
+                &.yep {
+                    color: rgba(#FFF, .2);
+                    box-shadow: none;
+                }
+                &.average {
+                    color: #FFF;
+                }
+                &.null {
+                    color: rgba(#FFF, .1);
+                }
+                .stroke {
+                    opacity: .65;
+                }
+                &.span {
+                    color: rgba(#FFF, .2);
+                }
+            }
+            &.today {
+                .average:not(.null) {
+                    color: rgba(#FFF, .9);
+                }
+            }
+        }
+    }
+    .liner {
+        border-color: rgba(#FFF, .5);
+    }
+    // .quota-down .chart .data {
+    //     .data-fill {
+    //         background: rgba(#FFF, .1);
+    //     }
+    //     .data-void {
+    //         background: rgba(#FFF, .6);
+    //     }
+    // }
+    // magic loop over theme colors
+    // @for $i from 1 through length($colors) {
+    //     $c: nth($colors, $i);
+    //     .tile-color#{$i} {
+    //         .line .data .data-point {
+    //             &.average {
+    //                 box-shadow: 0 0 0 1px $c;
+    //             }
+    //         }
+    //     }
+    // }
+}
+
+
+// Sortable stylesheet
+.as-sortable-item {
+    border: solid 1px $base-mix;
+}
+
+.as-sortable-placeholder {
+    box-shadow: 0 0 0 1px $base-light inset;
+    @include background-stripes();
+}
+
+.as-sortable-drag {
+    background: $base-dark;
+    border: 1px solid rgba($base-light, .2);
+}
+
+
+// _icon pull
+.fa {
+    color: inherit;
+    background: transparent;
+    &.active {
+        color: $active;
+        background: $base-light;
+    }
+}
+
+[class*="icon-"] {
+    &:after,
+    &:before { border: 0 solid $base-light; }
+}
+
+.calendar {
+    background: $base-light;
+    color: $base;
+}
+
+.calendar-toggle {
+    background: $base-mix;
+}
+
+.date-picker > div table td span.weekend {
+    color: $base-light;
+    background: rgba(mix($base, $base-dark), .2);
+    &.now {
+        background: rgba($base, .3);
+        color: $base-light;
+    }
+    &.active {
+        background: $base;
+        color: $base-light;
+    }
+}

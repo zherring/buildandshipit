@@ -1,0 +1,21 @@
+<div class="data-block">
+    <div ng-repeat="day in reportDayRange.month" class="data" title="{{tileReport.avg[day]}} \ {{tileReport.day[day].max}} | {{tileReport.day[day].min}}" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+        <div class="data-null flex-{{tileReport.day[day].spanTop}}"></div>
+        <div class="data-span flex-{{tileReport.day[day].span}}"></div>
+        <div class="data-null flex-{{tileReport.day[day].spanBottom}}"></div>
+        <div
+            class="data-point average"
+            ng-class="{'null': !tileReport.data[day].length}"
+            style="top: {{(100 - tileReport.day[day].pct)}}%">
+            <!-- ;transform: rotate({{tileReport.day[day].deg}}deg)
+            <div class="stroke" style="font-size: {{tileReport.day[day].w*0.6}}em;" ng-if="!$last"></div> -->
+        </div>
+    </div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.lines.max}}" style="bottom: 100%"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.lines.start}}" style="top: 50%"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.lines.min}}" style="top: 100%"></div>
+</div>
+<div class="data-days chart-text">
+    <div class="data-day"><span>{{tileReport.day[0].name}}</span></div>
+    <div class="data-day"><span>{{reportDayRange.month.length}} days ago</span></div>
+</div>

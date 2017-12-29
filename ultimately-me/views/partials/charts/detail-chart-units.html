@@ -1,0 +1,13 @@
+<div class="data-block">
+    <div ng-repeat="day in reportDayRange.month" class="data" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+        <div class="data-void flex-{{tileInFocus._quota - tileReport.data[day].length}}"></div>
+        <div class="data-point flex-1-0-auto" ng-repeat="data in tileReport.data[day]"></div>
+    </div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileInFocus._quota}}" style="bottom: 100%"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{(tileInFocus._quota/2).toFixed(0)}}" style="top: {{100-((((tileInFocus._quota/2).toFixed(0))/tileInFocus._quota)*100).toFixed(0)}}%" ng-if="tileInFocus.type != 2 && tileInFocus._quota > 4"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: 100%"></div>
+</div>
+<div class="data-days chart-text">
+    <div class="data-day"><span>{{tileReport.day[0].name}}</span></div>
+    <div class="data-day"><span>{{reportDayRange.month.length}} days ago</span></div>
+</div>

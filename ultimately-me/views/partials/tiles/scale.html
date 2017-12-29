@@ -1,0 +1,29 @@
+<div class="tile-content" ng-class="{'popup': $index > 3}">
+    <div class="tile-cue" as-sortable-item-handle ng-init="tile.range=scaleTypes[tile.scale].start;tile.locked=true" hm-press="preferences.editing = !preferences.editing">
+        <div class="name" ng-bind-html="tile.name | emojify"></div>
+        <div class="result">
+            <div
+                ng-if="answers[tile.tid].a && tile.locked"
+                ng-click="tile.locked = false;tile.range = scaleTypes[tile.scale].start">{{answers[tile.tid].a}}</div>
+            <div
+                ng-if="!answers[tile.tid].a || !tile.locked"
+                ng-click="doRecordData($event, tile, tile.range);tile.locked=true;ripple($event, '.tile-cue')">{{tile.range ? tile.range : scaleTypes[tile.scale].start}}</div>
+        </div>
+        <div class="when when-since" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+        <div class="when when-fixed" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+        <div class="answers" ng-if="(!answers[tile.tid].a || !tile.locked) && !preferences.editing">
+            <div class="answer">
+                <input
+                    type="range"
+                    ng-model="tile.range"
+                    value="{{scaleTypes[tile.scale].start}}"
+                    min="{{scaleTypes[tile.scale].min}}"
+                    max="{{scaleTypes[tile.scale].max}}"
+                    step="1" />
+            </div>
+        </div>
+    </div>
+
+    <div class="tile-tools" ng-include="'views/partials/tiles/general-tools.html'"></div>
+
+</div>

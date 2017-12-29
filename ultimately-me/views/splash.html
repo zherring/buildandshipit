@@ -1,0 +1,26 @@
+<div class="canvas flex-1 flex-column align-items-center justify-content-center fg-color{{color}}" ng-click="goTo('/main')">
+
+
+
+    <div class="center-message-box flip-container" ng-class="{'flip-me': progress == 100}">
+        <span class="message-top splash-message fg-light ghost" ng-class="{'fg-air': progress == 100}" style="font-weight: 200">{{message}}</span>
+
+        <div class="message-center flipper">
+			<div class="front">
+                <div class="progress-bar loader {{progressAxis}}" ng-class="{'done': progress == 100}">
+                    <div class="{{progressAxis}}" style="{{progressAxis}}: {{progress}}%"></div>
+                    <i class="fa fa-{{splashIcon}}"></i>
+                </div>
+			</div>
+			<div class="back" ng-include="'assets/graphics/um-logo-beta.svg'"></div>
+		</div>
+
+        <span class="message-bottom splash-counter ghost" ng-class="{'fg-air': progress == 100}" style="font-weight: 200">{{progress}}%</span>
+	</div>
+
+
+    <!-- <div style="width: 15vw;margin: 2em auto 0 auto;" ng-include="'assets/graphics/ico-um-logo.svg'"></div> -->
+
+    <!-- <div class="spinner loader" xcount="{{progress}}"></div> -->
+
+</div>

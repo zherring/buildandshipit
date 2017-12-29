@@ -1,0 +1,22 @@
+<div class="tile-content" ng-class="{'popup': $index > 3}">
+
+    <div class="tile-cue" as-sortable-item-handle hm-press="preferences.editing = !preferences.editing">
+        <div class="progress {{tile.axis}}" ng-class="{'zero-down': (tile.axis == 'down' && answers[tile.tid].b == 100),'done': (tile.axis == 'down' && answers[tile.tid].b == 0) || (tile.axis == 'up' && answers[tile.tid].b == 100)  }">
+            <div ng-style="{ 'height' : answers[tile.tid].b + '%'}"></div>
+        </div>
+        <!-- <i class="fa fa-angle-{{tile.axis}} fa-lg"></i> -->
+        <div class="name" ng-bind-html="tile.name | emojify"></div>
+        <div class="result" ng-click="doRecordData($event, tile);ripple($event, '.tile-cue')">
+            <div class="of-a">{{answers[tile.tid].a}}</div>
+            <div>
+                <span class="of-divide">&nbsp;</span>
+            </div>
+            <div class="of-quota">{{tile.quota}}</div>
+        </div>
+        <div class="when when-since" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+        <div class="when when-fixed" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+    </div>
+
+    <div class="tile-tools" ng-include="'views/partials/tiles/general-tools.html'"></div>
+
+</div>

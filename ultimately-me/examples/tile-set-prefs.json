@@ -1,0 +1,18 @@
+tile-set-prefs-MR29YZGY3O54-NDSABAGKQA1Q :
+{
+    "key": "MR29YZGY3O54-NDSABAGKQA1Q",
+    "tile-charts": [
+        {
+          "tid": 1426262475295,
+          "chart": 1
+        },
+        {
+          "tid": 1426262475294,
+          "chart": 2
+        },
+        {
+          "tid": 1426795515823,
+          "chart": 3
+        }
+    ]
+}

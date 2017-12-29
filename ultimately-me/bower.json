@@ -1,0 +1,32 @@
+{
+  "name": "UltimatelyMe",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jasesmith/ultimately-me",
+  "authors": [
+    "Jase <jase@star29.com>",
+    "zherring",
+    "shinsatoc"
+  ],
+  "description": "Personal data tracking",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jamfu": "https://github.com/jasesmith/jamfu.git",
+    "angular-touch": "~1.x.x",
+    "angular-animate": "~1.x.x",
+    "angular-gestures": "~x.x.x",
+    "ng-sortable": "~1.x.x",
+    "angular-sanitize": "~1.x.x"
+  },
+  "resolutions": {
+    "angular": "1.4.6"
+  }
+}

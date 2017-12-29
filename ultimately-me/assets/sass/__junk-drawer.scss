@@ -1,0 +1,43 @@
+// full screen menu
+// .main-menu {
+//     position: absolute;
+//     top: 100%;
+//     width: 85vw;
+//     height: calc(100vh - 100%);
+//     left: 0;
+//     z-index: 10;
+//     font-size: .9rem;
+//     nav {
+//         list-style: none;
+//     }
+//     li {
+//         display: block;
+//         padding: 1em;
+//         &.menu-break {
+//             padding: 0;
+//             border-top: 1px solid;
+//             opacity: .2;
+//         }
+//     }
+//     .view-shield {
+//         position: absolute;
+//         top: 0;
+//         left: 100%;
+//         bottom: 0;
+//         width: 15vw;
+//     }
+// }
+
+.top-nav {
+    svg {
+        box-shadow: none;
+        border-radius: .3em;
+        path {
+            fill: #FFF;
+            &.icon-bg {
+                fill: #e8e8e8;
+                opacity: 0;
+            }
+        }
+    }
+}

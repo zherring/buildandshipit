@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<widget xmlns       = "http://www.w3.org/ns/widgets"
+    xmlns:gap       = "http://phonegap.com/ns/1.0"
+    xmlns:android   = "http://schemas.android.com/apk/res/android"
+    id              = "com.highfives.ultme"
+    version         = "1.0.1">
+    <name>Ultimately.Me</name>
+    <description>
+        Keeping track of some things!
+    </description>
+
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="handset" />
+    <preference name="android-minSdkVersion" value="16" />
+    <!-- Do not auto hide splash on iOS -->
+    <preference name="AutoHideSplashScreen" value="false" />
+    <!-- Do not auto hide splash on Android -->
+    <preference name="SplashScreenDelay" value="10000"/>
+
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" version="1.2.0" />
+
+    <!-- for the survey link -->
+    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
+
+
+    <!-- icons -->
+    <!-- <icon src="icon.png" width="120" height="120" /> -->
+    <icon src="assets/ios/icon-57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="assets/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="assets/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="assets/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+    <icon src="assets/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+
+    <!-- splash -->
+    <gap:splash src="splash.png" />
+
+    <!-- iPhone and iPod touch -->
+    <gap:splash src="assets/graphics/splash/Default.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="assets/graphics/splash/Default@2x.png" gap:platform="ios" width="640" height="960" />
+
+    <!-- iPhone 5 / iPod Touch (5th Generation) -->
+    <gap:splash src="assets/graphics/splash/iPhone5.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="assets/graphics/splash/iPhone5-horizontal.png" gap:platform="ios" width="1136" height="640" />
+
+    <!-- iPhone 6 -->
+    <gap:splash src="assets/graphics/splash/iPhone6.png" gap:platform="ios" width="750" height="1334" />
+    <gap:splash src="assets/graphics/splash/iPhone6-horizontal.png" gap:platform="ios" width="1334" height="750" />
+
+    <!-- iPhone 6 Plus -->
+    <gap:splash src="assets/graphics/splash/iPhone6-Plus.png" gap:platform="ios" width="1242" height="2208" />
+    <gap:splash src="assets/graphics/splash/iPhone6-plus-horizontal.png" gap:platform="ios" width="2208" height="1242" />
+
+    <!-- iPad -->
+    <!-- <gap:splash src="assets/graphics/splash/Default-Portrait.png" gap:platform="ios" width="768" height="1024" /> -->
+    <!-- <gap:splash src="assets/graphics/splash/Default-Landscape.png" gap:platform="ios" width="1024" height="768" /> -->
+
+    <!-- Retina iPad -->
+    <!-- <gap:splash src="assets/graphics/splash/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" /> -->
+    <!-- <gap:splash src="assets/graphics/splash/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" /> -->
+
+</widget>

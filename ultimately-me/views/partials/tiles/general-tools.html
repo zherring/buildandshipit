@@ -1,0 +1,34 @@
+<div class="edit">
+    <span class="fa fa-times" ng-click="tile.locked = !tile.locked" ng-if="!tile.locked && (tile.type == 3 || tile.type == 4)"></span>
+    <span class="fa fa-undo" ng-click="undoRecordData($event, tile)" ng-class="{'doc-brown': undo[tile.tid]}" ng-if="!preferences.editing && tileData[tile.tid].length && undo[tile.tid]"></span>
+    <span class="cancel-rewind fa" ng-click="toggleRewind(tile)" ng-class="{'fa-clock-o': !answers[tile.tid].editing, 'fa-times': answers[tile.tid].editing}" ng-if="preferences.editing && answers[tile.tid].canRewind"></span>
+
+    <span class="spacer" ng-if="preferences.editing && !answers[tile.tid].canRewind"></span>
+
+    <span class="save-rewind fa fa-check" ng-click="updateRewind(tile, answers[tile.tid].t)" ng-if="answers[tile.tid].rewind < 0 && answers[tile.tid].editing && preferences.editing"></span>
+    <span class="fa fa-pencil" ng-click="goTo('/edit/{{tile.tid}}', 'CE')" ng-if="preferences.editing && !answers[tile.tid].editing"></span>
+    <span class="archive-tile fa fa-archive" ng-click="doArchiveTile(tile)" ng-if="preferences.editing && !answers[tile.tid].editing"></span>
+</div>
+
+<div class="rewind" ng-if="preferences.editing && answers[tile.tid].editing && answers[tile.tid].rewindStop > 0">
+
+    <div class="when when-fixed">{{answers[tile.tid].t.fixed}}</div>
+    <div class="flex-row justify-content-between">
+        <span>
+            -{{answers[tile.tid].rewindStop}} min
+            <br /><span class="subtext">{{answers[tile.tid].rewindContext}}</span>
+        </span>
+        <span>0 min</span>
+    </div>
+
+    <input
+        type="range"
+        ng-model="answers[tile.tid].rewind"
+        ng-init="answers[tile.tid].rewind = 0"
+        value="0"
+        min="-{{answers[tile.tid].rewindStop}}"
+        max="0"
+        step="1"
+        ng-change="answers[tile.tid].t = showRewinder(-answers[tile.tid].rewind, answers[tile.tid].t.d)"
+        />
+</div>

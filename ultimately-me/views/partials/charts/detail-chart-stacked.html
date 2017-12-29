@@ -1,0 +1,32 @@
+<div class="data-block">
+    <div class="ab-key flex-column flex-1-all">
+        <div class="a" key="a" ng-class="{'winner': tileReport.data.a >= tileReport.data.b}">
+            <div ng-bind-html="tileInFocus.labels[1] | emojify"></div>
+        </div>
+        <div class="b" key="b" ng-class="{'winner': tileReport.data.b >= tileReport.data.a}">
+            <div ng-bind-html="tileInFocus.labels[-1] | emojify"></div>
+        </div>
+    </div>
+
+    <div class="data-group">
+        <div class="data" ng-class="{'winner': tileReport.data.a >= tileReport.data.b}">
+            <div ng-repeat="day in reportDayRange.month" class="ab-bar flex-column" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+                <div class="null flex-{{(tileReport.data.max - tileReport.data[day].a)}}"></div>
+                <div class="a flex-{{tileReport.data[day].a}}"></div>
+            </div>
+        </div>
+        <div class="data" ng-class="{'winner': tileReport.data.b >= tileReport.data.a}">
+            <div ng-repeat="day in reportDayRange.month" class="ab-bar flex-column" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+                <div class="b flex-{{tileReport.data[day].b}}"></div>
+                <div class="null flex-{{tileReport.data.max - tileReport.data[day].b}}"></div>
+            </div>
+        </div>
+    </div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.max}}" style="bottom: 100%"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: 50%"></div>
+    <div class="liner fg-color{{tileInFocus.color}}" line-label="-{{tileReport.data.max}}" style="top: 100%"></div>
+</div>
+<div class="data-days chart-text">
+    <div class="data-day day-0"><span>{{tileReport.day[0].name}}</span></div>
+    <div class="data-day day-{{reportDayRange.month.length}}"><span>{{reportDayRange.month.length}} days ago</span></div>
+</div>

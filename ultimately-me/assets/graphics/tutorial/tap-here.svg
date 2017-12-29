@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <g fill="none" fill-rule="evenodd">
+    <g stroke="#FFF" stroke-width="2">
+      <path d="M15.13 63.044c-7.075 40.05-29.618-6.248 7.27 27.963" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6.78 80.468c33.908 4.174 48.992-17.225 55.857-29.814"/>
+    </g>
+    <text fill="#FFF" transform="rotate(10 75.189 19.79)" font-family="HanziPen SC" font-size="18">
+      <tspan x="61.833" y="13.79">Tap</tspan> <tspan x="56.046" y="38.79">here!</tspan>
+    </text>
+  </g>
+</svg>

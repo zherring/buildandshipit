@@ -1,0 +1,10 @@
+<div class="tile-content">
+    <div class="tile-cue {{tileTypes[tileInFocus.type].name}} {{tileTypes[tileInFocus.type].name}}-{{tileInFocus.scale}}">
+
+        <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+            <div class="chart-inner"
+                ng-include="'views/partials/charts/detail-chart-' + chartTypes[tileInFocus._chart].name + '.html'"
+                ></div>
+        </div>
+    </div>
+</div>

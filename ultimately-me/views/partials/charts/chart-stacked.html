@@ -1,0 +1,23 @@
+<div class="data-block">
+    <div class="data">
+        <div class="ab-key flex-row justify-content-between">
+            <div class="a" key="a">
+                <span ng-bind-html="tile.labels[1] | emojify"></span>
+            </div>
+            <div class="b" key="b">
+                <span ng-bind-html="tile.labels[-1] | emojify"></span>
+            </div>
+        </div>
+        <div class="ab-bar ab-bar-null flex-row" ng-if="!report[tile.tid].data.a && !report[tile.tid].data.b">
+            <div class="a flex-1"></div>
+            <div class="b flex-1"></div>
+        </div>
+        <div class="ab-bar flex-row" ng-if="report[tile.tid].data.a || report[tile.tid].data.b">
+            <div class="a flex-{{report[tile.tid].data.a}}" ng-class="{'winner': report[tile.tid].data.a >= report[tile.tid].data.b}"></div>
+            <div class="b flex-{{report[tile.tid].data.b}}" ng-class="{'winner': report[tile.tid].data.b >= report[tile.tid].data.a}"></div>
+        </div>
+    </div>
+</div>
+<div class="chart-text">
+    7 day average
+</div>

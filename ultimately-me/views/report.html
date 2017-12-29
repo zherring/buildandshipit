@@ -1,0 +1,16 @@
+<nav class="top-nav" ng-click="goTo('/main', 'LR')">
+    <div class="end fa fa-angle-left pad-left-1"></div>
+    <div class="middle">
+        <span>Reports</span>
+    </div>
+</nav>
+
+<div class="canvas reports flex-1 scroller">
+    <ul class="grid ng-cloak" ng-cloak>
+        <li ng-repeat="tile in tiles track by tile.tid"
+            ng-include="'views/partials/reports/tile-' + tileTypes[tile.type].name + '.html'"
+            class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+            ng-click="goTo('/report/' + tile.tid + '/details')"
+            ></li>
+    </ul>
+</div>

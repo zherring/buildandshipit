@@ -1,0 +1,41 @@
+.as-sortable-item,
+.as-sortable-placeholder {
+    min-height: 3em;
+    display: block;
+}
+
+.as-sortable-item {
+    background-color: #fff;
+    -ms-touch-action: auto;
+    touch-action: auto;
+}
+
+.as-sortable-item-handle {
+  cursor: move;
+}
+
+.as-sortable-placeholder {
+    border-radius: .3em;
+    font-size: .5em;
+}
+
+.as-sortable-drag {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    opacity: .85;
+    font-size: .8em;
+    padding: 0;
+    border-radius: .3em;
+    .data {
+        padding: .5em;
+    }
+    li {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+.as-sortable-hidden {
+  display: none !important;
+}

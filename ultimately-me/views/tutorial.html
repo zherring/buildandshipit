@@ -1,0 +1,155 @@
+<div class="tutorial-nav">
+    <div class="flex-1 text-left current" ng-click="prevEditorStep()" ng-class="{'vapor': step == 1}"><i class="fa fa-angle-left fa-lg"></i></div>
+    <div class="flex-row justify-content-center">
+        <span class="fa fa-circle" ng-repeat="s in steps" ng-class="{'current': step == s}" ng-click="goToEditorStep(s)"></span>
+    </div>
+    <div class="flex-1 text-right current" ng-click="nextEditorStep()"><i class="fa fa-{{step == steps.length ? 'thumbs-o-up fa-lg' : 'angle-right fa-lg'}}" ng-class="{'hint': step == 1}"></i></div>
+
+</div>
+
+<div class="canvas swiper flex-row flex-1 flex-1-0-auto-all" ng-swipe-left="nextEditorStep()" ng-swipe-right="prevEditorStep()">
+
+    <div class="step step-1 scroller" ng-class="{'current': step == 1}" style="z-index: 6">
+
+        <div class="center-message-box flip-container flip-me text-center">
+            <div class="message-top">
+                <h2><small>Welcome to</small><br />UltimatelyMe</h2>
+            </div>
+
+            <div class="message-center flipper">
+                <div class="back" ng-include="'assets/graphics/um-logo-beta.svg'"></div>
+    		</div>
+
+            <div class="message-bottom splash-counter xghost">
+                <p>Track things that matter to you. <br /> Create good habits, break bad ones.</p>
+            </div>
+    	</div>
+
+    </div>
+
+    <div class="step step-2 scroller text-center" ng-class="{'current': step == 2}" style="z-index: 5">
+
+        <h3 class="text-center">First Things First...</h3>
+        <h5 class="text-center">Say "Hi" To Your New Tile</h5>
+
+        <ul
+            class="grid ng-cloak pad-y-2"
+            as-sortable="dragControlListeners"
+            ng-attr-is-disabled="true"
+            ng-model="tiles"
+            ng-cloak
+            >
+            <li
+                ng-include="'views/partials/tiles/' + tileTypes[tile.type].name + '.html'"
+                class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+                ng-class="{'rewinding': answers[tile.tid].editing}"
+                as-sortable-item
+            ></li>
+        </ul>
+
+        <p>Let's start at, literally, <em>square one.</em></p>
+        <p>Tiles are how you use UltimatelyMe.<br /> They keep track of things for you.</p>
+        <p>Got more things to track? No problemo!<br /> You can create all the tiles you need; they can work together or track separate things.</p>
+
+        <div class="tap-here" ng-class="{'tapped': tapped}" ng-include="'assets/graphics/tutorial/tap-here-2.svg'"></div>
+    </div>
+
+    <div class="step step-3 scroller text-center" ng-class="{'current': step == 3}" style="z-index: 4">
+
+        <h3 class="text-center">First Things First...</h3>
+        <h5>Give Your New Tile A Name</h5>
+
+        <ul
+            class="grid ng-cloak pad-y-2"
+            as-sortable="dragControlListeners"
+            ng-attr-is-disabled="true"
+            ng-model="tiles"
+            ng-cloak
+            >
+            <li
+                ng-include="'views/partials/tiles/' + tileTypes[tile.type].name + '.html'"
+                class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+                ng-class="{'rewinding': answers[tile.tid].editing}"
+                as-sortable-item
+            ></li>
+        </ul>
+
+        <div class="form-row"><input class="flex-1 text-center" type="text" ng-model="tile.name" placeholder="e.g.: Coffee" required /></div>
+        <p>This is the most important part:<br /> What do you want to keep track of?</p>
+        <p>Some tracking tiles that have been useful to us: <em>"Coffee"</em>, <em>"Exercise Yet?"</em> &amp; <em>"Mood."</em></p>
+
+    </div>
+
+    <div class="step step-4 scroller text-center" ng-class="{'current': step == 4}" style="z-index: 3">
+        <h3 class="text-center">How Should We<br /> Track This?</h3>
+
+        <ul
+            class="grid ng-cloak pad-y-2"
+            as-sortable="dragControlListeners"
+            ng-attr-is-disabled="true"
+            ng-model="tiles"
+            ng-cloak
+            >
+            <li
+                ng-include="'views/partials/tiles/' + tileTypes[tile.type].name + '.html'"
+                class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+                ng-class="{'rewinding': answers[tile.tid].editing}"
+                as-sortable-item
+            ></li>
+        </ul>
+
+        <h5>Pick Your Tile Type</h5>
+        <div class="toggle-bar flex-row flex-wrap flex-1-0-auto-all pad-top-1">
+            <div class="item" ng-repeat="(id, item) in tileTypes" ng-class="{'active': currentTile == $index}" ng-click="setTileType($index)">
+                <span>{{item.nickname}}</span>
+            </div>
+        </div>
+
+        <div class="type-wrapper flex-1-0-auto">
+            <div ng-show="tile.type == 1" ng-include="'views/partials/tile-settings/for-count.html'"></div>
+            <div ng-show="tile.type == 2" ng-include="'views/partials/tile-settings/for-quota.html'"></div>
+            <div ng-show="tile.type == 3" ng-include="'views/partials/tile-settings/for-binary.html'"></div>
+            <div ng-show="tile.type == 4" ng-include="'views/partials/tile-settings/for-scale.html'"></div>
+        </div>
+    </div>
+
+    <div class="step step-5 scroller text-center" ng-class="{'current': step == 5}" style="z-index: 2">
+        <h3>I Feel Pretty!</h3>
+
+        <ul
+            class="grid ng-cloak pad-y-2"
+            as-sortable="dragControlListeners"
+            ng-attr-is-disabled="true"
+            ng-model="tiles"
+            ng-cloak
+            >
+            <li
+                ng-include="'views/partials/tiles/' + tileTypes[tile.type].name + '.html'"
+                class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+                ng-class="{'rewinding': answers[tile.tid].editing}"
+                as-sortable-item
+            ></li>
+        </ul>
+        <h5>Pick Your Tile Color</h5>
+        <div class="form-row flex-1-0-auto" ng-include="'views/partials/tile-settings/general-colors.html'"></div>
+        <p>Whichever color you choose,<br /> you'll look hella slick.</p>
+
+    </div>
+
+    <div class="step step-6 scroller text-center" ng-class="{'current': step == 6}" style="z-index: 1">
+
+        <h3>And You're Done!</h3>
+        <h5>Your First Tile Is Ready</h5>
+        <p>There are a couple of other options you can tweak if you want, but we covered the big-picture important parts.<p>
+
+        <h5>Thanks for Installing<br /> UltimatelyMe!</h3>
+
+        <div style="margin: 1em auto; width: 35vw" ng-click="closeTutorial($event, '/main')" ng-include="'assets/graphics/um-logo-beta.svg'"></div>
+
+        <p><b>Quick Tip:</b> Press and hold a tile for a few seconds enter <i>Edit Mode</i>, where you can edit tile options, and drag to arrange your tiles.</p>
+
+    </div>
+
+</div>
+
+<div class="cancel-view fa fa-lg" ng-if="step < 6" ng-click="closeTutorial($event, '/main')">&times;</div>

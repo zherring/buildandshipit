@@ -1,0 +1,98 @@
+<div class="canvas preview flex-column">
+    <div class="cancel-view fa fa-lg" ng-click="goTo('/main', 'EC')">&times;</div>
+    <ul
+        class="grid ng-cloak"
+        as-sortable="dragControlListeners"
+        ng-attr-is-disabled="true"
+        ng-model="tiles"
+        ng-class="{'editing': preferences.editing}"
+        ng-cloak
+        >
+        <li
+            ng-include="'views/partials/tiles/' + tileTypes[tile.type].name + '.html'"
+            class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+            ng-class="{'rewinding': answers[tile.tid].editing}"
+            as-sortable-item
+        ></li>
+    </ul>
+    <div class="control-bar flex-row flex-1-0-auto-all">
+        <button ng-click="goToEditorStep(1)" ng-class="{'active': step == 1}"><span ng-class="{'fg-alert': hasErrors(1)}"><i class="fa fa-lg fa-square"></i></span></button>
+        <button ng-click="goToEditorStep(2)"><i class="fa fa-angle-right ghost"></i></button>
+        <button ng-click="goToEditorStep(2)" ng-class="{'active': step == 2}"><span ng-class="{'fg-alert': hasErrors(2)}"><i class="fa fa-lg fa-question-circle"></i></span></button>
+        <button ng-click="goToEditorStep(3)"><i class="fa fa-angle-right ghost"></i></button>
+        <button ng-click="goToEditorStep(3)" ng-class="{'active': step == 3}"><span><i class="fa fa-lg fa-clock-o"></i></span></button>
+        <button ng-click="goToEditorStep(4)"><i class="fa fa-angle-right ghost"></i></button>
+        <button ng-click="goToEditorStep(4)" ng-class="{'active': step == 4}"><span ng-class="{'ghost': hasErrors(1) || hasErrors(2)}"><i class="fa fa-lg fa-floppy-o"></i></span></button>
+    </div>
+</div>
+
+
+<div class="editor swiper flex-row flex-1 flex-1-0-auto-all" ng-swipe-left="nextEditorStep()" ng-swipe-right="prevEditorStep()">
+
+    <div class="step-1 step--name scroller" ng-class="{'current': step == 1}" style="z-index: 4">
+        <div class="form-row">
+            <div class="pad-bottom-1">
+                What do you want to track?
+            </div>
+            <input class="flex-1" type="text" ng-model="tile.name" placeholder="e.g.: How am I feeling?" required />
+            <div class="tile-info pad-top-1 helptext">The title can be a name, question, or anything, really. It just depends on what you want to track and how you want to track it.
+            </div>
+        </div>
+        <div class="text-center flex-0-0-auto pad-y-2">
+            <button class="rounded pad-y-half pad-x-2" ng-class="{'save': !errors.length}" ng-disabled="errors.length" ng-click="nextEditorStep()">Next</button>
+        </div>
+    </div>
+
+    <div class="step-2 step--type scroller" ng-class="{'current': step == 2}" style="z-index: 3">
+        <div class="form-row toggle-area">
+            <div class="pad-bottom-1">
+                How do you want to track this?
+            </div>
+
+            <div class="toggle-bar flex-row flex-wrap flex-1-0-auto-all">
+                <div class="item" ng-repeat="(id, item) in tileTypes" ng-class="{'active': currentTile == $index}" ng-click="setTileType($index)">
+                    <!-- <input type="radio" value="{{id}}" ng-model="currentType" /> -->
+                    <span>{{item.nickname}}</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="type-wrapper flex-1-0-auto">
+            <!-- <div ng-show="tile.type == 0" ng-include="'views/partials/tile-settings/for-blank.html'"></div> -->
+            <div ng-show="tile.type == 1" ng-include="'views/partials/tile-settings/for-count.html'"></div>
+            <div ng-show="tile.type == 2" ng-include="'views/partials/tile-settings/for-quota.html'"></div>
+            <div ng-show="tile.type == 3" ng-include="'views/partials/tile-settings/for-binary.html'"></div>
+            <div ng-show="tile.type == 4" ng-include="'views/partials/tile-settings/for-scale.html'"></div>
+        </div>
+        <div class="text-center flex-0-0-auto pad-y-2">
+            <button class="rounded pad-y-half pad-x-2" ng-class="{'save': !errors.length}" ng-disabled="errors.length" ng-click="nextEditorStep()">Next</button>
+        </div>
+    </div>
+
+    <div class="step-3 step--time scroller" ng-class="{'current': step == 3}" style="z-index: 2">
+        <div class="form-row" ng-include="'views/partials/tile-settings/general-timestamp.html'"></div>
+        <div class="form-row" ng-include="'views/partials/tile-settings/general-timebox.html'"></div>
+        <div class="text-center flex-0-0-auto pad-y-2">
+            <button class="rounded pad-y-half pad-x-2" ng-class="{'save': !errors.length}" ng-disabled="errors.length" ng-click="nextEditorStep()">Next</button>
+        </div>
+    </div>
+
+    <div class="step-4 step--done scroller flex-column" ng-class="{'current': step == 4}" style="z-index: 1">
+        <div class="errors form-row flex-0-0-auto" ng-if="errors.length">
+            You've got errors!
+            <ul>
+                <li ng-repeat="error in errors">{{error.label}} <a class="fg-alert" ng-click="goToEditorStep(error.step)"><u>fix this</u></a></li>
+            </ul>
+        </div>
+
+        <div class="form-row flex-1-0-auto" ng-include="'views/partials/tile-settings/general-colors.html'"></div>
+
+        <div class="text-center flex-0-0-auto pad-y-2">
+            <button class="rounded pad-y-half pad-x-2" ng-class="{'save': !errors.length}" ng-disabled="errors.length" ng-click="doSaveTile($event, tile)">Save</button>
+        </div>
+
+    </div>
+</div>
+<!-- <div class="flex-row">
+    <button ng-if="step == 4" class="flex-1 pad-1" ng-class="{'save': !errors.length}" ng-disabled="errors.length" ng-click="doSaveTile($event, tile)">Save</button>
+</div> -->

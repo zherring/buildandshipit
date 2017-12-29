@@ -1,0 +1,51 @@
+<nav class="top-nav" ng-click="goTo('/main', 'RL')">
+    <div class="end fa fa-angle-left pad-left-1"></div>
+    <div class="middle">Account</div>
+</nav>
+
+<div class="canvas flex-1 scroller bg-mix">
+
+    <!-- // depricated?
+    <div class="form-row">
+        <label for="theme">App Theme:</label>
+        <select ng-model="preferences.theme" ng-options="theme.id as theme.name for theme in themes" ng-change="updatePreference('theme', preferences.theme)"></select>
+    </div> -->
+
+    <!-- <div class="form-row">
+        <button ng-click="pullData()"> Pull Data </button>
+    </div> -->
+
+    <div class="form-row pad-top-2">
+        <!-- <hr /> -->
+        <!-- <span ng-click="goTo('/tutorial')"><i class="fa fa-graduation-cap fa-lg"></i> Show me the tutorial</span> -->
+    </div>
+
+
+    <div class="form-row">
+        <!-- <hr /> -->
+        <label class="flex-1">
+            <input type="checkbox" ng-model="preferences.debugMode" ng-change="updatePreference('debugMode', preferences.debugMode)" />
+            debug mode
+        </label>
+    </div>
+
+
+    <div class="form-row debug" ng-if="preferences.debugMode">
+        <hr />
+        <i class="fa fa-user fa-lg"></i> Some account info:
+        <pre>{{preferences | json}}</pre>
+    </div>
+
+
+    <div class="form-row" ng-if="preferences.debugMode">
+        <hr />
+        <span class="fg-warning"><i class="fa fa-ambulance fa-lg"></i> Warning, 危険, دعا, 警告, предупреждающий, uyarıcı, ¡Caución!, Achtung Baby!</span>
+        <br />
+        <br />Pressing this button will remove your current data and replace it with randomly generated data.
+        <br /><em class="fg-alert">This cannot be undone.</em>
+        <br />
+        <br />
+        <button class="rounded alert" ng-click="setRandomData();ripple($event);"><i class="fa fa-warning"></i> Get Random Data</button>
+    </div>
+
+</div>

@@ -1,0 +1,57 @@
+// Add/Edit Tile Editor
+.preview {
+    padding: .8em 0;
+    .grid {
+        margin-top: 0;
+        margin-bottom: .5em;
+        li {
+            margin: 0 .8em;
+        }
+    }
+    .tile {
+        // turning off tile transitions due to weird drag/drop effect
+        transition: none;
+    }
+    .cancel-view {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: .8em;
+        z-index: 1;
+    }
+}
+
+.editor {
+    transition: none;
+    [class*="step--"] {
+        // padding-bottom: 2em;
+        touch-action: pan-y;
+        -ms-touch-action: pan-y;
+        -webkit-touch-action: pan-y;
+    }
+    .toggle-area {
+        z-index: 1;
+        .toggle-bar .item {
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                border: 0 solid transparent;
+                border-width: 0 .8em .6em .8em;
+                margin-top: .4em;
+            }
+            &:before {
+                top: 100%;
+            }
+            &:after {
+                top: calc(100% + 2px);
+            }
+        }
+    }
+}
+.save-tile {
+    padding: .8em;
+}

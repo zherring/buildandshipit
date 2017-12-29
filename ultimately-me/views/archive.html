@@ -1,0 +1,13 @@
+<nav class="top-nav" ng-click="goTo('/main', 'LR')">
+    <div class="end fa fa-angle-left pad-left-1"></div>
+    <div class="middle">
+        <span>Archive</span>
+    </div>
+    <!-- <div class="end fa fa-times"></div> -->
+</nav>
+
+<div class="canvas flex-1 scroller bg-mix">
+    <ul class="grid">
+        <li ng-repeat="(id, tile) in archives" ng-include="'views/partials/tiles/in-archive.html'" class="tile tile-archive {{tileTypes[tile.type].name}} tile-color{{tile.color}}"></li>
+    </ul>
+</div>

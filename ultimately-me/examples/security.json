@@ -1,0 +1,18 @@
+"12345678910_dfghklertyu":
+{
+    "tileSet":{
+        "admins": ['asefhqweiu238','asefhqweiusd8','236advi48e76g'],
+        "can_edit": true,
+        "can_delete": false,
+        "can_report": true,
+        "can_share": false,
+        "can_copy": false
+    },
+    "tile":{
+        "can_create": true,
+        "can_edit": true,
+        "can_delete": false,
+        "can_record": true,
+        "can_report": true
+    }
+}

@@ -1,0 +1,30 @@
+.tips {
+    h1, h2, h3, h4, h5 {
+        font-weight: 200;
+        letter-spacing: .05em;
+        margin: 0;
+        + p {
+            margin-top: 1em;
+        }
+    }
+    p {
+        padding: 0;
+        margin: 0 0 1.5em 0;
+        line-height: 1.4;
+        font-size: .7em;
+        opacity: .65;
+        font-family: inherit;
+        font-weight: 200;
+        &.serif {
+            font-family: $serif-font;
+            font-weight: 100;
+            font-style: italic;
+            i,em {
+                font-style: normal;
+            }
+        }
+    }
+    .scroller {
+        padding: 3.5em 1em;
+    }
+}

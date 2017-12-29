@@ -1,0 +1,51 @@
+<nav class="top-nav">
+    <div class="middle pad-left-1">
+        <span>Ultimately.Me</span>
+    </div>
+    <div class="end fa fa-bar-chart" ng-click="goTo('/report')"></div>
+    <div class="end fa fa-ellipsis-v pad-x-1" ng-class="{'active': openMenu}" ng-click="toggleMenu($event);ripple($event)"></div>
+    <div class="main-menu" ng-if="openMenu">
+        <nav clas="scroller">
+            <li ng-class="{'current': currentPath == '/archive'}" ng-click="doMenuLink('/archive')"><span class="fa fa-archive"></span> Archive</li>
+            <li class="menu-break"></li>
+            <li ng-class="{'current': currentPath == '/tips'}" ng-click="doMenuLink('/tips', 'LR')"><span class="fa fa-book"></span> Tips and Tricks</li>
+            <li class="menu-break"></li>
+            <li ng-class="{'current': currentPath == '/tutorial'}" ng-click="doMenuLink('/tutorial', 'LR')"><span class="fa fa-lightbulb-o"></span> Tutorial</li>
+            <li class="menu-break"></li>
+            <li ng-class="{'current': currentPath == '/about'}" ng-click="doMenuLink('/about', 'LR')"><span class="fa fa-comment"></span> Feedback</li>
+        </nav>
+    </div>
+</nav>
+
+<div class="set-nav" ng-if="tileSetKeys.length > 1">
+    <span class="fa fa-circle" ng-repeat="set in tileSetKeys" ng-class="{'current': set == currentSetKey}"></span>
+</div>
+
+<div class="canvas flex-1 scroller">
+    <ul
+        class="grid ng-cloak"
+        as-sortable="dragControlListeners"
+        ng-attr-is-disabled="!preferences.editing"
+        ng-model="tiles"
+        ng-class="{'editing': preferences.editing}"
+        ng-cloak
+        >
+        <li
+            ng-repeat="tile in tiles track by tile.tid"
+            ng-include="'views/partials/tiles/' + tileTypes[tile.type].name + '.html'"
+            class="tile {{tileTypes[tile.type].name}} tile-color{{tile.color}}"
+            ng-class="{'rewinding': answers[tile.tid].editing}"
+            as-sortable-item
+            ></li>
+        <li class="tile new-tile tile-color">
+            <div class="tile-content" ng-click="goTo('/add', 'CE')">
+
+                    <div class="tile-cue">
+                        <div class="name">+ New Tile</div>
+                    </div>
+
+            </div>
+        </li>
+    </ul>
+    <div class="menu-shield" ng-if="openMenu" ng-click="toggleMenu()"></div>
+</div>

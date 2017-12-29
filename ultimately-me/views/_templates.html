@@ -1,0 +1,411 @@
+<script type="text/ng-template" id="tile-general-tools">
+    <div class="edit">
+        <span class="fa fa-times" ng-click="tile.locked = !tile.locked" ng-if="!tile.locked && (tile.type == 3 || tile.type == 4)"></span>
+        <span class="fa fa-undo" ng-click="undoRecordData($event, tile)" ng-class="{'doc-brown': undo[tile.tid]}" ng-if="!preferences.editing && tileData[tile.tid].length && undo[tile.tid]"></span>
+        <span class="cancel-rewind fa" ng-click="toggleRewind(tile)" ng-class="{'fa-clock-o': !answers[tile.tid].editing, 'fa-times': answers[tile.tid].editing}" ng-if="preferences.editing && answers[tile.tid].canRewind"></span>
+
+        <span class="spacer" ng-if="preferences.editing && !answers[tile.tid].canRewind"></span>
+
+        <span class="save-rewind fa fa-check" ng-click="updateRewind(tile, answers[tile.tid].t)" ng-if="answers[tile.tid].rewind < 0 && answers[tile.tid].editing && preferences.editing"></span>
+        <span class="fa fa-pencil" ng-click="goTo('/edit/{{tile.tid}}', 'CE')" ng-if="preferences.editing && !answers[tile.tid].editing"></span>
+    </div>
+
+    <div class="rewind" ng-if="preferences.editing && answers[tile.tid].editing && answers[tile.tid].rewindStop > 0">
+
+        <div class="when when-fixed">{{answers[tile.tid].t.fixed}}</div>
+        <div class="flex-row justify-content-between">
+            <span>
+                -{{answers[tile.tid].rewindStop}} min
+                <br /><span class="subtext">{{answers[tile.tid].rewindContext}}</span>
+            </span>
+            <span>0 min</span>
+        </div>
+
+        <input
+            type="range"
+            ng-model="answers[tile.tid].rewind"
+            ng-init="answers[tile.tid].rewind = 0"
+            value="0"
+            min="-{{answers[tile.tid].rewindStop}}"
+            max="0"
+            step="1"
+            ng-change="answers[tile.tid].t = showRewinder(-answers[tile.tid].rewind, answers[tile.tid].t.d)"
+            />
+    </div>
+</script>
+
+<script type="text/ng-template" id="tile-count">
+    <div class="tile-content" ng-class="{'popup': $index > 3}">
+
+        <div class="tile-cue" as-sortable-item-handle hm-press="preferences.editing = !preferences.editing">
+            <div class="name"> {{tile.name}} </div>
+            <div class="result" ng-click="doRecordData($event, tile);ripple($event, '.tile-cue')">{{answers[tile.tid].a}}</div>
+            <div class="when when-since" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+            <div class="when when-fixed" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+        </div>
+
+        <div class="tile-tools" ng-include="'tile-general-tools'"></div>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="tile-quota">
+    <div class="tile-content" ng-class="{'popup': $index > 3}">
+
+        <div class="tile-cue" as-sortable-item-handle hm-press="preferences.editing = !preferences.editing">
+            <div class="progress {{tile.axis}}" ng-class="{'zero-down': (tile.axis == 'down' && answers[tile.tid].b == 100),'done': (tile.axis == 'down' && answers[tile.tid].b == 0) || (tile.axis == 'up' && answers[tile.tid].b == 100)  }">
+                <div ng-style="{ 'height' : answers[tile.tid].b + '%'}"></div>
+            </div>
+            <!-- <i class="fa fa-angle-{{tile.axis}} fa-lg"></i> -->
+            <div class="name"> {{tile.name}} </div>
+            <div class="result" ng-click="doRecordData($event, tile);ripple($event, '.tile-cue')">
+                <div class="of-a">{{answers[tile.tid].a}}</div>
+                <div>
+                    <span class="of-divide">&nbsp;</span>
+                </div>
+                <div class="of-quota">{{tile.quota}}</div>
+            </div>
+            <div class="when when-since" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+            <div class="when when-fixed" ng-if="!_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+        </div>
+
+        <div class="tile-tools" ng-include="'tile-general-tools'"></div>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="tile-binary">
+    <div class="tile-content" ng-class="{'popup': $index > 3}">
+        <div class="tile-cue" as-sortable-item-handle ng-init="tile.locked=true" hm-press="preferences.editing = !preferences.editing">
+            <div class="name"> {{tile.name}} </div>
+            <div class="result" ng-if="answers[tile.tid].a && tile.locked" ng-click="tile.locked = false">{{answers[tile.tid].a}}</div>
+            <div class="answers flex-row" ng-if="!answers[tile.tid].a || !tile.locked">
+                <div class="answer answer-a" ng-click="doRecordData($event, tile, 1);tile.locked=true;ripple($event, '.tile-cue')">
+                    {{tile.labels['1']}}
+                </div>
+                <div class="answer answer-b" ng-click="doRecordData($event, tile, -1);tile.locked=true;ripple($event, '.tile-cue')">
+                    {{tile.labels['-1']}}
+                </div>
+            </div>
+            <div class="when when-since" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+            <div class="when when-fixed" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+        </div>
+
+        <div class="tile-tools" ng-include="'tile-general-tools'"></div>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="tile-scale">
+    <div class="tile-content" ng-class="{'popup': $index > 3}">
+        <div class="tile-cue" as-sortable-item-handle ng-init="tile.range=scaleTypes[tile.scale].start;tile.locked=true" hm-press="preferences.editing = !preferences.editing">
+            <div class="name">{{tile.name}}</div>
+            <div class="result">
+                <div
+                    ng-if="answers[tile.tid].a && tile.locked"
+                    ng-click="tile.locked = false;tile.range = scaleTypes[tile.scale].start">{{answers[tile.tid].a}}</div>
+                <div
+                    ng-if="!answers[tile.tid].a || !tile.locked"
+                    ng-click="doRecordData($event, tile, tile.range);tile.locked=true;ripple($event, '.tile-cue')">{{tile.range ? tile.range : scaleTypes[tile.scale].start}}</div>
+            </div>
+            <div class="when when-since" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'since' || tile.showTime == 'both')">{{answers[tile.tid].t.since}}</div>
+            <div class="when when-fixed" ng-if="answers[tile.tid].t && tile.locked && !_.isNull(answers[tile.tid].t) && (tile.showTime == 'fixed' || tile.showTime == 'both')">{{answers[tile.tid].t.fixed}}</div>
+            <div class="answers" ng-if="(!answers[tile.tid].a || !tile.locked) && !preferences.editing">
+                <div class="answer">
+                    <input
+                        type="range"
+                        ng-model="tile.range"
+                        value="{{scaleTypes[tile.scale].start}}"
+                        min="{{scaleTypes[tile.scale].min}}"
+                        max="{{scaleTypes[tile.scale].max}}"
+                        step="1" />
+                </div>
+            </div>
+        </div>
+
+        <div class="tile-tools" ng-include="'tile-general-tools'"></div>
+
+    </div>
+</script>
+
+<!--
+//////////////////////////////////
+// REPORT TILES
+//////////////////////////////////
+-->
+<script type="text/ng-template" id="report-tile-count">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tile.type].name}}">
+            <div class="name">{{tile.name}}</div>
+            <div class="chart {{chartTypes[tile._chart].name}}">
+                <div class="chart-inner" ng-include="'chart-' + chartTypes[tile._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-tile-quota">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tile.type].name}} {{tileTypes[tile.type].name}}-{{tile.axis}}">
+            <div class="name">{{tile.name}}</div>
+            <div class="chart {{chartTypes[tile._chart].name}}">
+                <div class="chart-inner" ng-include="'chart-' + chartTypes[tile._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-tile-binary">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tile.type].name}}">
+            <div class="name">{{tile.name}}</div>
+            <div class="chart {{chartTypes[tile._chart].name}}">
+                <div class="chart-inner" ng-include="'chart-' + chartTypes[tile._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-tile-scale">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tile.type].name}} {{tileTypes[tile.type].name}}-{{tile.scale}}">
+            <div class="name">{{tile.name}}</div>
+            <div class="chart {{chartTypes[tile._chart].name}}">
+                <div class="chart-inner"ng-include="'chart-' + chartTypes[tile._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!--
+//////////////////////////////////
+// REPORT TILE CHARTS
+//////////////////////////////////
+-->
+<script type="text/ng-template" id="chart-units">
+    <div class="data-block">
+        <div ng-repeat="day in reportDayRange.week" class="data" ng-class="dayClasses(day, report[tile.tid].day[day], report[tile.tid].data[day])">
+            <div class="data-point flex-1 color{{tile.color}}" ng-repeat="data in report[tile.tid].data[day]"></div>
+        </div>
+    </div>
+    <div class="data-days chart-text">
+        <div class="data-day"><span>{{report[tile.tid].day[0].name}}</span></div>
+        <div class="data-day"><span>7 days ago</span></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="chart-bars">
+    <div class="data-block">
+        <div ng-repeat="day in reportDayRange.week" class="data" ng-class="dayClasses(day, report[tile.tid].day[day], report[tile.tid].data[day])">
+            <div class="data-void flex-{{tile._quota - report[tile.tid].data[day].length + report[tile.tid].data.over}}"></div>
+            <div class="data-fill flex-{{report[tile.tid].data[day].length}}" label="{{report[tile.tid].data[day].length}}"></div>
+        </div>
+        <div class="liner fg-color{{tile.color}}" line-label="{{(tile._quota/2).toFixed(0)}}" style="top: {{100-((((tile._quota/2).toFixed(0))/tile._quota)*100).toFixed(0)}}%" ng-if="tile.type != 2 && tile._quota > 4"></div>
+
+        <div class="liner fg-color{{tile.color}}" line-label="{{tile._quota}}" style="bottom: 100%" ng-if="tile._axis == 'down'"></div>
+        <div class="liner fg-color{{tile.color}}" line-label="0" style="top: {{(100 - report[tile.tid].data.max)}}%" ng-if="tile._axis == 'down'"></div>
+
+        <div class="liner fg-color{{tile.color}}" line-label="{{tile._quota}}" style="bottom: {{(100 - report[tile.tid].data.max)}}%" ng-if="tile._axis == 'up'"></div>
+        <div class="liner fg-color{{tile.color}}" line-label="0" style="top: 100%" ng-if="tile._axis == 'up'"></div>
+    </div>
+
+    <div class="data-days chart-text">
+        <div class="data-day day-0"><span>{{report[tile.tid].day[0].name}}</span></div>
+        <div class="data-day day-7"><span>7 days ago</span></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="chart-stacked">
+    <div class="data-block">
+        <div class="data">
+            <div class="ab-key flex-row justify-content-between">
+                <div class="a" key="a">
+                    <span>{{tile.labels[1]}}</span>
+                </div>
+                <div class="b" key="b">
+                    <span>{{tile.labels[-1]}}</span>
+                </div>
+            </div>
+            <div class="ab-bar ab-bar-null flex-row" ng-if="!report[tile.tid].data.a && !report[tile.tid].data.b">
+                <div class="a flex-1"></div>
+                <div class="b flex-1"></div>
+            </div>
+            <div class="ab-bar flex-row" ng-if="report[tile.tid].data.a || report[tile.tid].data.b">
+                <div class="a flex-{{report[tile.tid].data.a}}" ng-class="{'winner': report[tile.tid].data.a >= report[tile.tid].data.b}"></div>
+                <div class="b flex-{{report[tile.tid].data.b}}" ng-class="{'winner': report[tile.tid].data.b >= report[tile.tid].data.a}"></div>
+            </div>
+        </div>
+    </div>
+    <div class="chart-text">
+        7 day average
+    </div>
+</script>
+
+<script type="text/ng-template" id="chart-line">
+    <div class="data-block">
+        <div ng-repeat="day in reportDayRange.week" class="data" title="{{report[tile.tid].avg[day]}} \ {{report[tile.tid].day[day].max}} | {{report[tile.tid].day[day].min}}" ng-class="dayClasses(day, report[tile.tid].day[day], report[tile.tid].data[day])">
+            <div class="data-null flex-{{report[tile.tid].day[day].spanTop}}"></div>
+            <div class="data-span flex-{{report[tile.tid].day[day].span}}"></div>
+            <div class="data-null flex-{{report[tile.tid].day[day].spanBottom}}"></div>
+            <div class="data-point average" ng-class="{'null': !report[tile.tid].data[day].length}" style="top: {{(100 - report[tile.tid].day[day].pct)}}%"></div>
+        </div>
+        <div class="liner fg-color{{tile.color}}" line-label="{{report[tile.tid].data.lines.max}}" style="top: 0%"></div>
+        <div class="liner fg-color{{tile.color}}" line-label="{{report[tile.tid].data.lines.start}}" style="top: 50%"></div>
+        <div class="liner fg-color{{tile.color}}" line-label="{{report[tile.tid].data.lines.min}}" style="top: 100%"></div>
+    </div>
+    <div class="data-days chart-text">
+        <div class="data-day"><span>{{report[tile.tid].day[0].name}}</span></div>
+        <div class="data-day"><span>7 days ago</span></div>
+    </div>
+</script>
+
+<!--
+//////////////////////////////////
+// REPORT DETAILS
+//////////////////////////////////
+-->
+<script type="text/ng-template" id="report-details-count">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-details-quota">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}} {{tileTypes[tileInFocus.type].name}}-{{tileInFocus.axis}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-details-binary">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-details-scale">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}} {{tileTypes[tileInFocus.type].name}}-{{tileInFocus.scale}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!--
+//////////////////////////////////
+// REPORT DETAIL CHARTS
+//////////////////////////////////
+-->
+<script type="text/ng-template" id="detail-chart-units">
+    <div class="data-block">
+        <div ng-repeat="day in reportDayRange.month" class="data" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+            <div class="data-void flex-{{tileInFocus._quota - tileReport.data[day].length}}"></div>
+            <div class="data-point flex-1-0-auto" ng-repeat="data in tileReport.data[day]"></div>
+        </div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileInFocus._quota}}" style="bottom: 100%"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{(tileInFocus._quota/2).toFixed(0)}}" style="top: {{100-((((tileInFocus._quota/2).toFixed(0))/tileInFocus._quota)*100).toFixed(0)}}%" ng-if="tileInFocus.type != 2 && tileInFocus._quota > 4"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: 100%"></div>
+    </div>
+    <div class="data-days chart-text">
+        <div class="data-day"><span>{{tileReport.day[0].name}}</span></div>
+        <div class="data-day"><span>{{reportDayRange.month.length}} days ago</span></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="detail-chart-bars">
+    <div class="data-block">
+
+        <div ng-repeat="day in reportDayRange.month" class="data" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+            <div class="data-void flex-{{tileInFocus._quota - tileReport.data[day].length + tileReport.data.over}}"></div>
+            <div class="data-fill flex-{{tileReport.data[day].length}}" label="{{tileReport.data[day].length}}"></div>
+        </div>
+
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileInFocus._quota}}" style="bottom: 100%" ng-if="tileInFocus._axis == 'down'"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: {{(100 - tileReport.data.max)}}%" ng-if="tileInFocus._axis == 'down'"></div>
+
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileInFocus._quota}}" style="bottom: {{(100 - tileReport.data.max)}}%" ng-if="tileInFocus._axis == 'up'"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: 100%" ng-if="tileInFocus._axis == 'up'"></div>
+
+    </div>
+
+    <div class="data-days chart-text">
+        <div class="data-day day-0"><span>{{tileReport.day[0].name}}</span></div>
+        <div class="data-day day-{{_.last(reportDayRange.month)}}"><span>{{reportDayRange.month.length}} days ago</span></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="detail-chart-stacked">
+    <div class="data-block">
+        <div class="ab-key flex-column flex-1-all">
+            <div class="a" key="a" ng-class="{'winner': tileReport.data.a >= tileReport.data.b}">
+                <div>{{tileInFocus.labels[1]}}</div>
+            </div>
+            <div class="b" key="b" ng-class="{'winner': tileReport.data.b >= tileReport.data.a}">
+                <div>{{tileInFocus.labels[-1]}}</div>
+            </div>
+        </div>
+
+        <div class="data-group">
+            <div class="data" ng-class="{'winner': tileReport.data.a >= tileReport.data.b}">
+                <div ng-repeat="day in reportDayRange.month" class="ab-bar flex-column" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+                    <div class="null flex-{{(tileReport.data.max - tileReport.data[day].a)}}"></div>
+                    <div class="a flex-{{tileReport.data[day].a}}"></div>
+                </div>
+            </div>
+            <div class="data" ng-class="{'winner': tileReport.data.b >= tileReport.data.a}">
+                <div ng-repeat="day in reportDayRange.month" class="ab-bar flex-column" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+                    <div class="b flex-{{tileReport.data[day].b}}"></div>
+                    <div class="null flex-{{tileReport.data.max - tileReport.data[day].b}}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.max}}" style="bottom: 100%"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="0" style="top: 50%"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="-{{tileReport.data.max}}" style="top: 100%"></div>
+    </div>
+    <div class="data-days chart-text">
+        <div class="data-day day-0"><span>{{tileReport.day[0].name}}</span></div>
+        <div class="data-day day-{{reportDayRange.month.length}}"><span>{{reportDayRange.month.length}} days ago</span></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="detail-chart-line">
+    <div class="data-block">
+        <div ng-repeat="day in reportDayRange.month" class="data" title="{{tileReport.avg[day]}} \ {{tileReport.day[day].max}} | {{tileReport.day[day].min}}" ng-class="dayClasses(day, tileReport.day[day], tileReport.data[day])">
+            <div class="data-null flex-{{tileReport.day[day].spanTop}}"></div>
+            <div class="data-span flex-{{tileReport.day[day].span}}"></div>
+            <div class="data-null flex-{{tileReport.day[day].spanBottom}}"></div>
+            <div
+                class="data-point average"
+                ng-class="{'null': !tileReport.data[day].length}"
+                style="top: {{(100 - tileReport.day[day].pct)}}%">
+            </div>
+        </div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.lines.max}}" style="bottom: 100%"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.lines.start}}" style="top: 50%"></div>
+        <div class="liner fg-color{{tileInFocus.color}}" line-label="{{tileReport.data.lines.min}}" style="top: 100%"></div>
+    </div>
+    <div class="data-days chart-text">
+        <div class="data-day"><span>{{tileReport.day[0].name}}</span></div>
+        <div class="data-day"><span>{{reportDayRange.month.length}} days ago</span></div>
+    </div>
+</script>

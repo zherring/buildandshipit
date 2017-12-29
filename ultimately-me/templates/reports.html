@@ -1,0 +1,45 @@
+<script type="text/ng-template" id="report-details-count">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-details-quota">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}} {{tileTypes[tileInFocus.type].name}}-{{tileInFocus.axis}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-details-binary">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="report-details-scale">
+    <div class="tile-content">
+        <div class="tile-cue {{tileTypes[tileInFocus.type].name}} {{tileTypes[tileInFocus.type].name}}-{{tileInFocus.scale}}">
+
+            <div class="chart {{chartTypes[tileInFocus._chart].name}}">
+                <div class="chart-inner" ng-include="'detail-chart-' + chartTypes[tileInFocus._chart].name"></div>
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,11 @@
+<div class="form-row-label">Restart This {{tileTypes[tile.type].nickname}}</div>
+<div class="form-row fancy-radio-row flex-row align-items-center">
+    <label>
+        <input type="radio" value="" ng-model="tile.interval" />
+        <span>Never</span>
+    </label>
+    <label ng-repeat="(id, item) in timeBoxes">
+        <input type="radio" value="{{id}}" ng-model="tile.interval" />
+        <span>{{item.name}}</span>
+    </label>
+</div>

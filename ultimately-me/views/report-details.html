@@ -1,0 +1,16 @@
+<nav class="top-nav bg-color bg-light" ng-click="goTo('/report', 'LR')">
+    <div class="end fa fa-bar-chart pad-left-1"></div>
+    <div class="middle">
+        <span ng-bind-html="tileInFocus.name | emojify"></span>
+        <span class="ghost" ng-if="tileInFocus.axis == 'up'">({{tileInFocus.axis}} to {{tileInFocus.quota}})</span>
+        <span class="ghost" ng-if="tileInFocus.axis == 'down'">({{tileInFocus.axis}} from {{tileInFocus.quota}})</span>
+        <span class="ghost" ng-if="tileInFocus.scale">({{scaleTypes[tileInFocus.scale].name}})</span>
+    </div>
+    <div class="end fa fa-lg pad-x-1">&times;</div>
+</nav>
+
+<div class="canvas flex-1 flex-column bg-color{{tileInFocus.color}} fg-light">
+    <div
+        ng-include="'views/partials/reports/detail-' + tileTypes[tileInFocus.type].name + '.html'"
+        class="tile {{tileTypes[tileInFocus.type].name}} tile-color{{tileInFocus.color}} view-report"></div>
+</div>

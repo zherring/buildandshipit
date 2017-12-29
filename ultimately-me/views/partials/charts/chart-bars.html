@@ -1,0 +1,20 @@
+<div class="data-block">
+
+    <div ng-repeat="day in reportDayRange.week" class="data" ng-class="dayClasses(day, report[tile.tid].day[day], report[tile.tid].data[day])">
+        <div class="data-void flex-{{tile._quota - report[tile.tid].data[day].length + report[tile.tid].data.over}}"></div>
+        <div class="data-fill flex-{{report[tile.tid].data[day].length}}" label="{{report[tile.tid].data[day].length}}"></div>
+    </div>
+
+    <div class="liner fg-color{{tile.color}}" line-label="{{(tile._quota/2).toFixed(0)}}" style="top: {{100-((((tile._quota/2).toFixed(0))/tile._quota)*100).toFixed(0)}}%" ng-if="tile.type != 2 && tile._quota > 4"></div>
+
+    <div class="liner fg-color{{tile.color}}" line-label="{{tile._quota}}" style="bottom: 100%" ng-if="tile._axis == 'down'"></div>
+    <div class="liner fg-color{{tile.color}}" line-label="0" style="top: {{(100 - report[tile.tid].data.max)}}%" ng-if="tile._axis == 'down'"></div>
+
+    <div class="liner fg-color{{tile.color}}" line-label="{{tile._quota}}" style="bottom: {{(100 - report[tile.tid].data.max)}}%" ng-if="tile._axis == 'up'"></div>
+    <div class="liner fg-color{{tile.color}}" line-label="0" style="top: 100%" ng-if="tile._axis == 'up'"></div>
+</div>
+
+<div class="data-days chart-text">
+    <div class="data-day day-0"><span>{{report[tile.tid].day[0].name}}</span></div>
+    <div class="data-day day-7"><span>7 days ago</span></div>
+</div>

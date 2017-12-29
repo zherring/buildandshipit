@@ -1,0 +1,4 @@
+<div class="flex-row flex-wrap button-bar kit">
+    <button ng-repeat="color in colors" class="bg-color{{color}}" ng-click="tile.color = color"><i class="fa" ng-class="{'fa-check': tile.color == color}"></i></button>
+    <button ng-click="tile.color = null" class="bg-dark"><i class="fa" ng-class="{'fa-check': tile.color == null}"></i></button>
+</div>
