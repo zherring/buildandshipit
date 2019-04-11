@@ -1,0 +1,67 @@
+// Phones ()
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation: portrait) {
+  section { padding: .3rem; }
+  body > header {
+    background: url('../img/mobile-top-bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: -293px -75px;
+
+
+    span.logo { background: url("../img/logo-wh.svg"); background-size: contain; margin-bottom: 1rem;}
+    aside { font-size: 1.1rem; }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    }
+  h1 { font-size: 3em; }
+  .boxed { text-align: center; }
+  header > section { width: 90%;}
+  body > header #deets { background: transparent; color: #fff; width: 100%; text-align: center; padding: .85rem; }
+
+
+  section#prizes div > div {
+    width: 100%;
+  }
+
+  #tracks {
+  background-size: 200%;
+  }
+
+  #tracks #brief-tracks {
+    flex-direction: column;
+    .briefs { min-width: 98%; margin: 0;  }
+  }
+  #tracks article { width: 92%; }
+
+  #examples { display: none; }
+  #faq { display: none; }
+
+  .section-header { font-size: 2.3rem; }
+  #tracks header { width: auto; padding: .3rem; }
+
+#industries > p {
+    min-width: 120px;
+  }
+}
+
+// Phones (Landscape)
+@media only screen and (min-width : 321px) and (orientation: landscape){
+
+}
+
+// Tablets
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    body > header {
+      background: url('../img/mobile-top-bg.jpg') no-repeat;
+      background-size: cover;
+      // background-position: -293px -75px;
+      > * { margin: 1rem 4rem; ;  }
+      #deets { padding: 1rem; }
+
+      }
+}
