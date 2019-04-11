@@ -44,12 +44,13 @@
   .section-header { font-size: 2.3rem; }
   #tracks header { width: auto; padding: .3rem; }
 
-#industries > p {
+  #industries > p {
     min-width: 120px;
-  }
-#judge, #contact { min-width: 100%; }
-}
+    }
+  #judge, #contact { min-width: 100%; }
+  #sign-up { bottom: 0; }
 
+}
 // Phones (Landscape)
 @media only screen and (min-width : 321px) and (orientation: landscape){
 

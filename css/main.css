@@ -305,7 +305,9 @@ footer#judge-labs {
   #industries > p {
     min-width: 120px; }
   #judge, #contact {
-    min-width: 100%; } }
+    min-width: 100%; }
+  #sign-up {
+    bottom: 0; } }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   body > header {
