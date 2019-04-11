@@ -1,0 +1,315 @@
+html {
+  height: 100%; }
+
+body {
+  background: #000;
+  color: #fff;
+  padding-bottom: 10rem; }
+
+a, a:visited {
+  color: #F4E2AA;
+  text-decoration: none; }
+
+a:hover {
+  color: #F1B90E;
+  text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6, p, a {
+  text-rendering: optimizeLegibility; }
+
+section {
+  padding: 3rem; }
+
+.section-header {
+  font-size: 4rem;
+  width: 98%;
+  margin: .25em; }
+
+.link-badge {
+  font-size: .8rem;
+  background: linear-gradient(90.63deg, #E8BB42 0.11%, #E1A913 97.49%);
+  box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: .6rem 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: .75rem;
+  transition: all .3s ease-in-out; }
+  .link-badge.badge-large {
+    font-size: 1em;
+    margin-top: 2rem; }
+  .link-badge:hover {
+    transform: translateY(0.3rem);
+    color: #fff; }
+
+.card {
+  height: 20rem;
+  width: 20rem;
+  background: #fff;
+  color: #000;
+  border-radius: 3px;
+  padding: 2rem; }
+
+h1, h2, h3, h4, h5, .roboto {
+  font-family: "Roboto", Helvetica, Arial, san-serif; }
+
+h1 {
+  font-size: 4.375em;
+  font-weight: bold; }
+  h1 aside {
+    font-size: 1.8rem;
+    font-weight: normal;
+    text-transform: uppercase; }
+
+.logo-white {
+  background: url("../img/logo-wh.svg") no-repeat;
+  width: 13.75rem;
+  display: inline-block;
+  height: 5rem;
+  background-size: contain; }
+
+.fl {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.fl-wrap {
+  flex-wrap: wrap; }
+
+.fl-jc-sa {
+  justify-content: space-around; }
+
+.fl-rw, .fl-row {
+  flex-direction: row; }
+
+.fl-jc-c {
+  justify-content: center; }
+
+.fl-jc-sa {
+  justify-content: space-around; }
+
+.fl-jc-sb {
+  justify-content: space-between; }
+
+.boxed {
+  background: #030206;
+  outline: 6px solid #FFFFFF;
+  color: #FFF;
+  padding: .4em;
+  display: inline-block;
+  margin: .25em 0; }
+
+.ico {
+  background: #fff;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 10px;
+  padding: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem; }
+
+body > header {
+  color: #000;
+  height: 70vh;
+  min-height: 50rem;
+  background: #FFF url("../img/bg.jpg") no-repeat top right;
+  background-size: contain; }
+  body > header #deets {
+    background: #fff;
+    width: 48%;
+    padding: .8rem .8rem 0 0; }
+  body > header .logo {
+    background: #FFF url("../img/logo.svg");
+    width: 13.75rem;
+    padding-left: 0;
+    display: block;
+    height: 5rem;
+    background-size: contain; }
+
+.container {
+  max-width: 68rem;
+  padding: 1rem; }
+
+#sign-up {
+  width: 30rem;
+  background: #336DF8;
+  color: #fff;
+  text-decoration: none;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: fixed;
+  left: 50%;
+  margin-left: -15rem;
+  bottom: 2rem;
+  border-radius: 3px;
+  box-shadow: 0 12px 14px 0 rgba(0, 0, 0, 0.2);
+  border-radius: .5rem;
+  transition: all .3s; }
+  #sign-up span {
+    font-family: Roboto, helvetica, arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    opacity: .9;
+    transition: all .3s; }
+  #sign-up:hover {
+    background-position: 100px;
+    transform: translateY(-0.1em);
+    background: #245DE5; }
+    #sign-up:hover span {
+      opacity: 1; }
+
+section#prizes {
+  background: #000 url("../img/eth-pattern-drk.svg") repeat;
+  border: #000 1.5rem solid;
+  align-content: flex-start;
+  justify-content: flex-start; }
+  section#prizes h2 {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin: .2em; }
+  section#prizes .cash {
+    font-weight: bold;
+    font-size: 2.5em; }
+  section#prizes div > div {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    width: 28%;
+    max-width: 24rem;
+    margin: 1rem;
+    min-width: 250px; }
+    section#prizes div > div h2 {
+      margin: -.5em;
+      font-size: 1.8em; }
+
+#tracks {
+  background: url("../img/tracks-bg.jpg") no-repeat;
+  background-size: 70%;
+  background-position: top center; }
+  #tracks header {
+    text-align: center;
+    padding: 0 15rem;
+    padding-top: 1.5rem;
+    margin-bottom: 1rem; }
+  #tracks .link-badge {
+    padding-top: .75rem;
+    transition: all .3s ease-in-out; }
+  #tracks #brief-tracks {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: stretch; }
+  #tracks article {
+    color: #000;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 3px;
+    width: 45%;
+    margin-bottom: 3rem; }
+  #tracks #brief-tracks .briefs {
+    text-align: left;
+    flex-grow: 1;
+    min-width: 400px; }
+    #tracks #brief-tracks .briefs h3 {
+      font-size: 1.8em;
+      text-align: center; }
+
+#industries {
+  background: #000 url("../img/eth-pattern-drk.svg") repeat;
+  border: #000 1.5rem solid; }
+  #industries > p {
+    min-width: 200px;
+    text-align: center; }
+
+#about-labs .logo-white {
+  height: 1em;
+  margin-bottom: -.3rem;
+  margin-left: .8rem; }
+
+#judge {
+  flex: 2;
+  min-width: 650px; }
+
+#contact {
+  flex: 1;
+  min-width: 500px; }
+
+footer#judge-labs {
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: url("../img/footer-bg.jpg") no-repeat bottom center;
+  background-size: cover; }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) {
+  section {
+    padding: .3rem; }
+  body > header {
+    background: url("../img/mobile-top-bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: -293px -75px; }
+    body > header span.logo {
+      background: url("../img/logo-wh.svg");
+      background-size: contain;
+      margin-bottom: 1rem; }
+    body > header aside {
+      font-size: 1.1rem; }
+    body > header .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+  h1 {
+    font-size: 3em; }
+  .boxed {
+    text-align: center; }
+  header > section {
+    width: 90%; }
+  body > header #deets {
+    background: transparent;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: .85rem; }
+  section#prizes div > div {
+    width: 100%; }
+  #tracks {
+    background-size: 200%; }
+  #tracks #brief-tracks {
+    flex-direction: column; }
+    #tracks #brief-tracks .briefs {
+      min-width: 98%;
+      margin: 0; }
+  #tracks article {
+    width: 92%; }
+  #examples {
+    display: none; }
+  #faq {
+    display: none; }
+  .section-header {
+    font-size: 2.3rem; }
+  #tracks header {
+    width: auto;
+    padding: .3rem; }
+  #industries > p {
+    min-width: 120px; } }
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  body > header {
+    background: url("../img/mobile-top-bg.jpg") no-repeat;
+    background-size: cover; }
+    body > header > * {
+      margin: 1rem 4rem; }
+    body > header #deets {
+      padding: 1rem; } }
