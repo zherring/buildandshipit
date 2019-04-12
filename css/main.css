@@ -124,6 +124,9 @@ body > header {
     background: #fff;
     width: 48%;
     padding: .8rem .8rem 0 0; }
+    body > header #deets a {
+      color: #F1B90E;
+      text-decoration: none; }
   body > header .logo {
     background: #FFF url("../img/logo.svg");
     width: 13.75rem;
