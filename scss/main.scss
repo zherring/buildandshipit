@@ -96,7 +96,6 @@ body > header {
     background: #fff;
     width: 48%;
     padding: .8rem .8rem 0 0;
-    a { color: #F1B90E; text-decoration: none; }
   }
   .logo {
       background: #FFF url("../img/logo.svg");
@@ -186,6 +185,7 @@ section#prizes {
   }
 }
 
+.briefs a, #deets a { color: #F1B90E; text-decoration: none; }
 #tracks {
   background: url('../img/tracks-bg.jpg') no-repeat;
   // width: 48rem;

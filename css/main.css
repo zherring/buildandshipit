@@ -124,9 +124,6 @@ body > header {
     background: #fff;
     width: 48%;
     padding: .8rem .8rem 0 0; }
-    body > header #deets a {
-      color: #F1B90E;
-      text-decoration: none; }
   body > header .logo {
     background: #FFF url("../img/logo.svg");
     width: 13.75rem;
@@ -197,6 +194,10 @@ section#prizes {
     section#prizes div > div h2 {
       margin: -.5em;
       font-size: 1.8em; }
+
+.briefs a, #deets a {
+  color: #F1B90E;
+  text-decoration: none; }
 
 #tracks {
   background: url("../img/tracks-bg.jpg") no-repeat;
